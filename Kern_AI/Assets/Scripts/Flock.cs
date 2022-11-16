@@ -12,7 +12,10 @@ public class Flock : MonoBehaviour {
     public float separationFactor;
     public float alignmentFactor;
     public float cohesionFactor;
+    public float centeringFactor;
+    public float turnFactor;
     public float viewDist;
+    public float collisionAvoidanceDist;
     public float protectedDist;
 
     public Vector3 boundingBox = new Vector3();
@@ -30,9 +33,9 @@ public class Flock : MonoBehaviour {
 
         for(int i = 0; i < boidAmount; i++) {
 
-            Vector3 boidPos = new Vector3(Random.Range(-boundingBox.x, boundingBox.x),
-                                          Random.Range(-boundingBox.y, boundingBox.y),
-                                          Random.Range(-boundingBox.z, boundingBox.z));
+            Vector3 boidPos = new Vector3(Random.Range(-boundingBox.x + 1, boundingBox.x - 1),
+                                          Random.Range(-boundingBox.y + 1, boundingBox.y - 1),
+                                          Random.Range(-boundingBox.z + 1, boundingBox.z - 1));
 
             Quaternion boidRot = Random.rotation;
 
@@ -41,7 +44,7 @@ public class Flock : MonoBehaviour {
                                           Random.Range(minSpeed, maxSpeed));
             
             GameObject boid = Instantiate(boidPrefab, boidPos, boidRot);
-            boid.GetComponent<Boid>().Initialize(this, boidVel, separationFactor, alignmentFactor, cohesionFactor, viewDist, protectedDist);
+            boid.GetComponent<Boid>().Initialize(this, boidVel, separationFactor, alignmentFactor, cohesionFactor, centeringFactor, turnFactor, viewDist, collisionAvoidanceDist, protectedDist);
             boids.Add(boid.GetComponent<Boid>());
 
         }
