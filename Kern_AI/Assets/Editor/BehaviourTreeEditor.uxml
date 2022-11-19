@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/BehaviourTreeEditor.uss?fileID=7433441132597879392&amp;guid=58e116f9cacf8414abb768e01545f695&amp;type=3#BehaviourTreeEditor" />
+    <ui:Label text="Hello World! From UXML" />
+    <SplitView fixed-pane-index="0" fixed-pane-initial-dimension="100" orientation="Horizontal">
+        <ui:VisualElement name="LeftPanel" fixed-pane-index="1" />
+        <ui:VisualElement name="RightPanel">
+            <BehaviourTreeGraph focusable="true" />
+        </ui:VisualElement>
+    </SplitView>
+</ui:UXML>
