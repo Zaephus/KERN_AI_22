@@ -17,12 +17,22 @@ public class BehaviourTreeRunner : MonoBehaviour {
         DebugLogNode log3 = ScriptableObject.CreateInstance<DebugLogNode>();
         log3.message  = "Testing 3.";
 
-        SequencerNode sequence = ScriptableObject.CreateInstance<SequencerNode>();
-        sequence.children.Add(log1);
-        sequence.children.Add(log2);
-        sequence.children.Add(log3);
+        WaitNode wait1 = ScriptableObject.CreateInstance<WaitNode>();
+        wait1.duration = 1;
+        WaitNode wait2 = ScriptableObject.CreateInstance<WaitNode>();
+        wait2.duration = 1;
+        WaitNode wait3 = ScriptableObject.CreateInstance<WaitNode>();
+        wait3.duration = 1;
 
-        RepeaterNode loop = ScriptableObject.CreateInstance<RepeaterNode>();
+        CompositeNode sequence = ScriptableObject.CreateInstance<SequencerNode>();
+        sequence.children.Add(log1);
+        sequence.children.Add(wait1);
+        sequence.children.Add(log2);
+        sequence.children.Add(wait2);
+        sequence.children.Add(log3);
+        sequence.children.Add(wait3);
+
+        DecoratorNode loop = ScriptableObject.CreateInstance<RepeaterNode>();
         loop.child = sequence;
         tree.rootNode = loop;
     }

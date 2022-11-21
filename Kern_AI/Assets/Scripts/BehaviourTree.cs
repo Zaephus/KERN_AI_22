@@ -6,6 +6,7 @@ using UnityEngine;
 public class BehaviourTree : ScriptableObject {
 
     public BehaviourNode rootNode;
+    public List<BehaviourNode> nodes = new List<BehaviourNode>();
     public NodeState treeState = NodeState.Running;
 
     public NodeState Update() {

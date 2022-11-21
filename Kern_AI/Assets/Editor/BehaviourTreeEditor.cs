@@ -2,10 +2,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-public class BehaviourTreeEditor : EditorWindow
-{
+public class BehaviourTreeEditor : EditorWindow {
+
+    private BehaviourTreeGraph treeGraph;
+
     [MenuItem("Window/Behaviour Tree/Editor")]
-    public static void ShowExample()
+    public static void OpenTreeEditor()
     {
         GetWindow<BehaviourTreeEditor>("Behaviour Tree Editor");
     }
@@ -15,6 +17,7 @@ public class BehaviourTreeEditor : EditorWindow
         // Import UXML
         var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/BehaviourTreeEditor.uxml");
         visualTree.CloneTree(rootVisualElement);
+        treeGraph = rootVisualElement.Q<BehaviourTreeGraph>();
     }
 
     private void OnSelectionChange() {
@@ -23,6 +26,9 @@ public class BehaviourTreeEditor : EditorWindow
         if(tree != null) {
             SerializedObject so = new SerializedObject(tree);
             rootVisualElement.Bind(so);
+            if(treeGraph != null) {
+                treeGraph.PopulateGraph(tree);
+            }
         }
         else {
             rootVisualElement.Unbind();
