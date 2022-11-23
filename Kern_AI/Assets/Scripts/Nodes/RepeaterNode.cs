@@ -7,7 +7,7 @@ public class RepeaterNode : DecoratorNode {
     protected override void OnStart() {}
 
     protected override NodeState Evaluate() {
-        child.Update();
+        GetChildren()[0].Update();
         return NodeState.Running;
     }
 

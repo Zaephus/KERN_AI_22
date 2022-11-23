@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8332456492452997596
+--- !u!114 &-2751282521865621528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,12 +9,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed5ff5013b68e547b9c9045aaa76f4e, type: 3}
-  m_Name: RepeaterNode
+  m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
+  m_Name: WaitNode
   m_EditorClassIdentifier: 
-  state: 0
+  nodeGraphPosition: {x: 182.20001, y: 296}
+  guid: 9b5f81f9e6aa8cc4cbe1de7f95487e22
+  state: 1
   hasStarted: 0
-  child: {fileID: 0}
+  duration: 1
+--- !u!114 &-2663604420711698500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 297, y: 296}
+  guid: 84115c8ccc0bc094784b35bf712f26c1
+  state: 1
+  hasStarted: 0
+  message: Tweede ding
+--- !u!114 &-843165940511170211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 33.45913, y: 296.48544}
+  guid: 46d0beee06a522e469f2d36a8abe4155
+  state: 1
+  hasStarted: 0
+  message: Eerste ding
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,12 +63,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc22c292c809404991e4d2bc1b07342, type: 3}
   m_Name: BehaviourTree
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 3577973869079413673}
+  rootNode: {fileID: 4696059263445037467}
   nodes:
-  - {fileID: 3577973869079413673}
-  - {fileID: -8332456492452997596}
+  - {fileID: 2221627490984615920}
+  - {fileID: -843165940511170211}
+  - {fileID: -2751282521865621528}
+  - {fileID: -2663604420711698500}
+  - {fileID: 1746835816148306482}
+  - {fileID: 4696059263445037467}
   treeState: 0
---- !u!114 &3577973869079413673
+--- !u!114 &1746835816148306482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +81,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
+  m_Name: WaitNode
   m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 444.99997, y: 296}
+  guid: 2c8826860d0c3a14ab88268a4df07e9e
   state: 0
-  hasStarted: 0
-  message: 
+  hasStarted: 1
+  duration: 1
+--- !u!114 &2221627490984615920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 115.19998, y: 115.72}
+  guid: de6d1d499dd413b498fc49b3cfc268b4
+  state: 0
+  hasStarted: 1
+  children:
+  - {fileID: -843165940511170211}
+  - {fileID: -2751282521865621528}
+  - {fileID: -2663604420711698500}
+  - {fileID: 1746835816148306482}
+--- !u!114 &4696059263445037467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed5ff5013b68e547b9c9045aaa76f4e, type: 3}
+  m_Name: RepeaterNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 0, y: 0}
+  guid: 3115fd47b3fc19a4680932b2137ed929
+  state: 0
+  hasStarted: 1
+  child: {fileID: 2221627490984615920}

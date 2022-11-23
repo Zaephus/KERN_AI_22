@@ -6,4 +6,18 @@ public abstract class DecoratorNode : BehaviourNode {
 
     public BehaviourNode child;
 
+    public override void AddChild(BehaviourNode _child) {
+        child = _child;
+    }
+
+    public override void RemoveChild(BehaviourNode _child) {
+        if(child == _child) {
+            child = null;
+        }
+    }
+
+    public override List<BehaviourNode> GetChildren() {
+        return new List<BehaviourNode>() { child };
+    }
+
 }

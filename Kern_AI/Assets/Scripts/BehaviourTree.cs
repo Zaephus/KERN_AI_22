@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEditor.Callbacks;
 
 [CreateAssetMenu(fileName = "BehaviourTree", menuName = "Behaviour Tree")]
 public class BehaviourTree : ScriptableObject {
@@ -26,6 +28,36 @@ public class BehaviourTree : ScriptableObject {
 
         return treeState;
 
+    }
+
+    public void AddChild(BehaviourNode _parent, BehaviourNode _child) {
+
+        if(!nodes.Contains(_parent)) {
+            return;
+        }
+
+        nodes[nodes.IndexOf(_parent)].AddChild(_child);
+
+        if(nodes.Contains(_child)) {
+            return;
+        }
+
+        nodes.Add(_child);
+
+    }
+
+    public void RemoveChild(BehaviourNode _parent, BehaviourNode _child) {
+
+        if(!nodes.Contains(_parent)) {
+            return;
+        }
+
+        nodes[nodes.IndexOf(_parent)].RemoveChild(_child);
+
+    }
+
+    public List<BehaviourNode> GetChildren(BehaviourNode _parent) {
+        return !nodes.Contains(_parent) ? new List<BehaviourNode>() : nodes[nodes.IndexOf(_parent)].GetChildren();
     }
 
 }

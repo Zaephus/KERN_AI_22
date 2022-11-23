@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum NodeState {
-    Running,
-    Succes,
-    Failure
+    Running = 0,
+    Succes = 1,
+    Failure = 2
 }
-
+// dit is een comment
 public abstract class BehaviourNode : ScriptableObject {
+
+    public Vector2 nodeGraphPosition;
+
+    public string guid;
 
     [SerializeField]
     private NodeState state = NodeState.Running;
@@ -37,6 +41,13 @@ public abstract class BehaviourNode : ScriptableObject {
         hasStarted = false;
         return state;
         
+    }
+
+    public virtual void AddChild(BehaviourNode _child) {}
+    public virtual void RemoveChild(BehaviourNode _child) {}
+    public virtual List<BehaviourNode> GetChildren() {
+        List<BehaviourNode> children = new List<BehaviourNode>();
+        return children;
     }
 
 }
