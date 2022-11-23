@@ -3,8 +3,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UIElements;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 
 public class BehaviourTreeGraph : GraphView {
@@ -129,6 +129,33 @@ public class BehaviourTreeGraph : GraphView {
 
     }
 
+    private void SetRootNode(BehaviourNode _node) {
+
+        BehaviourNodeGraph rootNodeGraph = GetNodeByGuid(tree.rootNode.guid) as BehaviourNodeGraph;
+        rootNodeGraph.input.SetEnabled(true);
+
+        if(_node != null) {
+
+            BehaviourNodeGraph nodeGraph = GetNodeByGuid(_node.guid) as BehaviourNodeGraph;
+
+            foreach(Edge edge in nodeGraph.input.connections) {
+                BehaviourNodeGraph parentGraph = edge.output.node as BehaviourNodeGraph;
+                tree.RemoveChild(parentGraph.node, nodeGraph.node);
+                parentGraph.output.Disconnect(edge);
+            }
+
+            DeleteElements(nodeGraph.input.connections);
+            nodeGraph.input.DisconnectAll();
+            nodeGraph.input.SetEnabled(false);
+            tree.rootNode = _node;
+
+        }
+        else {
+            Debug.LogWarning("Node was null.");
+        }
+
+    }
+
     public override List<Port> GetCompatiblePorts(Port _startPort, NodeAdapter _nodeAdapter) {
 
         return ports.ToList()!.Where(endPort => endPort.direction != _startPort.direction &&
@@ -145,6 +172,11 @@ public class BehaviourTreeGraph : GraphView {
 
             if(type.IsAbstract) {
                 continue;
+            }
+
+            if(_evt.target is Node) {
+                Node node = _evt.target as Node;
+                _evt.menu.AppendAction("Make root node", _ => SetRootNode(tree.GetNodeByGUID(node.viewDataKey)));
             }
 
             _evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));

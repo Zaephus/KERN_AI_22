@@ -60,4 +60,13 @@ public class BehaviourTree : ScriptableObject {
         return !nodes.Contains(_parent) ? new List<BehaviourNode>() : nodes[nodes.IndexOf(_parent)].GetChildren();
     }
 
+    public BehaviourNode GetNodeByGUID(string _guid) {
+        foreach(BehaviourNode node in nodes) {
+            if(node.guid == _guid) {
+                return node;
+            }
+        }
+        return null;
+    }
+
 }
