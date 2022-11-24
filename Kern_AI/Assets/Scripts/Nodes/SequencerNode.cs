@@ -43,8 +43,6 @@ public class SequencerNode : CompositeNode {
 
     }
 
-    protected override void OnEnd() {
-        
-    }
+    protected override void OnEnd() {}
     
 }

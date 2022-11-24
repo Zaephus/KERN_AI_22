@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,18 +8,21 @@ public enum NodeState {
     Succes = 1,
     Failure = 2
 }
-// dit is een comment
+
+public class NodeProperty : Attribute {
+    public NodeProperty() {}
+}
+
 public abstract class BehaviourNode : ScriptableObject {
 
     public Vector2 nodeGraphPosition;
 
     public string guid;
 
-    [SerializeField]
-    private NodeState state = NodeState.Running;
+    public bool hasStarted;
 
     [SerializeField]
-    private bool hasStarted;
+    private NodeState state = NodeState.Running;
 
     protected abstract void OnStart();
     protected abstract NodeState Evaluate();

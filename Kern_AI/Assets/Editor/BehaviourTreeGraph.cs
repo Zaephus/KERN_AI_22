@@ -38,6 +38,10 @@ public class BehaviourTreeGraph : GraphView {
         if(!hasTree) return;
         tree.nodes.ForEach(CreateNodeGraph);
 
+        BehaviourNodeGraph rootNodeGraph = GetNodeByGuid(tree.rootNode.guid) as BehaviourNodeGraph;
+        rootNodeGraph.input.SetEnabled(false);
+        rootNodeGraph.inputContainer.Remove(rootNodeGraph.input);
+
         foreach(BehaviourNode node in tree.nodes) {
 
             BehaviourNodeGraph parentGraph = GetNodeByGuid(node.guid) as BehaviourNodeGraph;
@@ -57,7 +61,7 @@ public class BehaviourTreeGraph : GraphView {
         AddElement(nodeGraph);
     }
 
-    private void CreateNode(Type _type) {
+    private void CreateNode(Type _type, Vector2 _nodePos) {
 
         if(!hasTree) {
             return;
@@ -66,6 +70,7 @@ public class BehaviourTreeGraph : GraphView {
         BehaviourNode node = ScriptableObject.CreateInstance(_type) as BehaviourNode;
         node.name = _type.Name;
         node.guid = GUID.Generate().ToString();
+        node.nodeGraphPosition = _nodePos;
 
         tree.nodes.Add(node);
 
@@ -133,6 +138,7 @@ public class BehaviourTreeGraph : GraphView {
 
         BehaviourNodeGraph rootNodeGraph = GetNodeByGuid(tree.rootNode.guid) as BehaviourNodeGraph;
         rootNodeGraph.input.SetEnabled(true);
+        rootNodeGraph.inputContainer.Add(rootNodeGraph.input);
 
         if(_node != null) {
 
@@ -147,6 +153,7 @@ public class BehaviourTreeGraph : GraphView {
             DeleteElements(nodeGraph.input.connections);
             nodeGraph.input.DisconnectAll();
             nodeGraph.input.SetEnabled(false);
+            nodeGraph.inputContainer.Remove(nodeGraph.input);
             tree.rootNode = _node;
 
         }
@@ -168,6 +175,11 @@ public class BehaviourTreeGraph : GraphView {
 
         TypeCache.TypeCollection types = TypeCache.GetTypesDerivedFrom<BehaviourNode>();
 
+        VisualElement contentViewContainer = ElementAt(1);
+        Vector3 screenMousePosition = _evt.localMousePosition;
+        Vector2 worldMousePosition = screenMousePosition - contentViewContainer.transform.position;
+        worldMousePosition *= 1 / contentViewContainer.transform.scale.x;
+
         foreach(Type type in types) {
 
             if(type.IsAbstract) {
@@ -179,7 +191,7 @@ public class BehaviourTreeGraph : GraphView {
                 _evt.menu.AppendAction("Make root node", _ => SetRootNode(tree.GetNodeByGUID(node.viewDataKey)));
             }
 
-            _evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type));
+            _evt.menu.AppendAction($"{type.BaseType.Name}/{type.Name}", _ => CreateNode(type, worldMousePosition));
 
         }
 

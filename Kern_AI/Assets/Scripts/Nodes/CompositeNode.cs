@@ -5,6 +5,7 @@ using UnityEngine;
 //Could this be an interface?
 public abstract class CompositeNode : BehaviourNode {
 
+    [NodeProperty]
     public List<BehaviourNode> children = new List<BehaviourNode>();
 
     public override void AddChild(BehaviourNode _child) {

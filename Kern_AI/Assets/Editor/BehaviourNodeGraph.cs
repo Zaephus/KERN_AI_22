@@ -1,7 +1,10 @@
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEditor.Experimental.GraphView;
 
 public class BehaviourNodeGraph : UnityEditor.Experimental.GraphView.Node {
@@ -22,14 +25,46 @@ public class BehaviourNodeGraph : UnityEditor.Experimental.GraphView.Node {
         style.left = node.nodeGraphPosition.x;
         style.top = node.nodeGraphPosition.y;
 
+        SerializedObject nodeObj = new SerializedObject(node);
+
+        foreach(string s in GetNodeProperties()) {
+            SerializedProperty nodeProperty = nodeObj.FindProperty(s);
+
+            PropertyField propertyField = new PropertyField(nodeProperty);
+            propertyField.Bind(nodeObj);
+
+            extensionContainer.Add(propertyField);
+        }
+
         CreateInputPorts();
         CreateOutputPorts();
+        
+        RefreshExpandedState();
+        expanded = true;
+        
     }
 
     public override void SetPosition(Rect newPos) {
         base.SetPosition(newPos);
         node.nodeGraphPosition.x = newPos.xMin;
         node.nodeGraphPosition.y = newPos.yMin;
+    }
+
+    private List<string> GetNodeProperties() {
+
+        List<string> properties = new List<string>();
+
+        FieldInfo[] infos = node.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
+        foreach(MemberInfo info in infos) {
+            NodeProperty nodeProperty = info.GetCustomAttribute(typeof(NodeProperty)) as NodeProperty;
+            if(nodeProperty != null) {
+                Debug.Log(info.Name);
+                properties.Add(info.Name);
+            }
+        }
+
+        return properties;
+
     }
 
     private void CreateInputPorts() {

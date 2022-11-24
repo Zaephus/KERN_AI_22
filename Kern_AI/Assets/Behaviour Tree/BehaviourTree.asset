@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 182.20001, y: 296}
+  nodeGraphPosition: {x: 143.20004, y: 296}
   guid: 9b5f81f9e6aa8cc4cbe1de7f95487e22
-  state: 1
-  hasStarted: 0
+  state: 0
+  hasStarted: 1
   duration: 1
 --- !u!114 &-2663604420711698500
 MonoBehaviour:
@@ -29,11 +29,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
   m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 297, y: 296}
+  nodeGraphPosition: {x: 323.2, y: 296.00006}
   guid: 84115c8ccc0bc094784b35bf712f26c1
   state: 1
   hasStarted: 0
-  message: Tweede ding
+  message: Hallo
 --- !u!114 &-843165940511170211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,11 +46,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
   m_Name: DebugLogNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 33.45913, y: 296.48544}
+  nodeGraphPosition: {x: -53.600037, y: 296.00006}
   guid: 46d0beee06a522e469f2d36a8abe4155
   state: 1
   hasStarted: 0
-  message: Eerste ding
+  message: Hey
+--- !u!114 &-9512025861408630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 167.4, y: 117.8}
+  guid: 4d9103f31368c44499e78b05d294c765
+  state: 0
+  hasStarted: 1
+  children:
+  - {fileID: -843165940511170211}
+  - {fileID: -2751282521865621528}
+  - {fileID: -2663604420711698500}
+  - {fileID: 1746835816148306482}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,12 +86,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootNode: {fileID: 4696059263445037467}
   nodes:
-  - {fileID: 2221627490984615920}
   - {fileID: -843165940511170211}
   - {fileID: -2751282521865621528}
   - {fileID: -2663604420711698500}
   - {fileID: 1746835816148306482}
   - {fileID: 4696059263445037467}
+  - {fileID: -9512025861408630}
   treeState: 0
 --- !u!114 &1746835816148306482
 MonoBehaviour:
@@ -84,32 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 444.99997, y: 296}
-  guid: 2c8826860d0c3a14ab88268a4df07e9e
-  state: 0
-  hasStarted: 1
-  duration: 1
---- !u!114 &2221627490984615920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
-  m_Name: SequencerNode
-  m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 115.19998, y: 115.72}
-  guid: de6d1d499dd413b498fc49b3cfc268b4
-  state: 0
-  hasStarted: 1
-  children:
-  - {fileID: -843165940511170211}
-  - {fileID: -2751282521865621528}
-  - {fileID: -2663604420711698500}
-  - {fileID: 1746835816148306482}
+  nodeGraphPosition: {x: 526.4001, y: 296.00006}
+  guid: 2d8826860d0c3a14ab88268a4df07e9e
+  state: 1
+  hasStarted: 0
+  duration: 2
 --- !u!114 &4696059263445037467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed5ff5013b68e547b9c9045aaa76f4e, type: 3}
   m_Name: RepeaterNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 0, y: 0}
+  nodeGraphPosition: {x: 68.76999, y: 17.160711}
   guid: 3115fd47b3fc19a4680932b2137ed929
   state: 0
   hasStarted: 1
-  child: {fileID: 2221627490984615920}
+  child: {fileID: -9512025861408630}
