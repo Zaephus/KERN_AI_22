@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class WaitNode : ActionNode {
 
-    [NodeProperty]
+    [NodeProperty(NodePropertyType.Null)]
     public float duration = 1f;
+    [NodeProperty(NodePropertyType.Null)]
+    public float hoi = 2f;
+    [NodeProperty(NodePropertyType.ReadOnly)]
+    public float readOnly = 1.3f;
     private float startTime;
 
     protected override void OnStart() {

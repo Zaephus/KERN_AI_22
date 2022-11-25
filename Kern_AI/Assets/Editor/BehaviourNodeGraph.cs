@@ -7,14 +7,17 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEditor.Experimental.GraphView;
 
-public class BehaviourNodeGraph : UnityEditor.Experimental.GraphView.Node {
+public class BehaviourNodeGraph : Node {
 
     public BehaviourNode node;
 
     public Port input;
     public Port output;
 
+    public List<Port> propertyPorts = new List<Port>();
+
     public BehaviourNodeGraph(BehaviourNode _node) {
+
         node = _node;
         if(node == null) {
             return;
@@ -27,18 +30,53 @@ public class BehaviourNodeGraph : UnityEditor.Experimental.GraphView.Node {
 
         SerializedObject nodeObj = new SerializedObject(node);
 
-        foreach(string s in GetNodeProperties()) {
+        int i = -5;
+
+        foreach(string s in GetNodeProperties().Keys) {
+        
             SerializedProperty nodeProperty = nodeObj.FindProperty(s);
 
             PropertyField propertyField = new PropertyField(nodeProperty);
             propertyField.Bind(nodeObj);
 
             extensionContainer.Add(propertyField);
+
+            propertyField.SetEnabled(true);
+
+            Port port = CreatePropertyPort(propertyField);
+
+            Rect fieldRect = new Rect(propertyField.parent.contentRect.x, propertyField.parent.contentRect.y + i, 50, 30);
+
+            switch(GetNodeProperties()[s]) {
+                case NodePropertyType.Null:
+                    propertyField.parent.style.paddingLeft = new StyleLength(20f);
+                    propertyField.parent.Add(port);
+                    port.SetPosition(fieldRect);
+                    propertyPorts.Add(port);
+                    break;
+
+                case NodePropertyType.ReadOnly:
+                    propertyField.parent.style.paddingLeft = new StyleLength(20f);
+                    propertyField.parent.Add(port);
+                    port.SetPosition(fieldRect);
+                    propertyPorts.Add(port);
+                    propertyField.SetEnabled(false);
+                    break;
+
+                case NodePropertyType.NonSerializable:
+                    inputContainer.Remove(port);
+                    break;
+
+            }
+
+            i += 19;
+
         }
 
         CreateInputPorts();
         CreateOutputPorts();
         
+        RefreshPorts();
         RefreshExpandedState();
         expanded = true;
         
@@ -50,16 +88,15 @@ public class BehaviourNodeGraph : UnityEditor.Experimental.GraphView.Node {
         node.nodeGraphPosition.y = newPos.yMin;
     }
 
-    private List<string> GetNodeProperties() {
+    private Dictionary<string, NodePropertyType> GetNodeProperties() {
 
-        List<string> properties = new List<string>();
+        Dictionary<string, NodePropertyType> properties = new Dictionary<string, NodePropertyType>();
 
         FieldInfo[] infos = node.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
         foreach(MemberInfo info in infos) {
             NodeProperty nodeProperty = info.GetCustomAttribute(typeof(NodeProperty)) as NodeProperty;
             if(nodeProperty != null) {
-                Debug.Log(info.Name);
-                properties.Add(info.Name);
+                properties.Add(info.Name, nodeProperty.propertyType);
             }
         }
 
@@ -74,6 +111,15 @@ public class BehaviourNodeGraph : UnityEditor.Experimental.GraphView.Node {
         }
         input.portName = "";
         inputContainer.Add(input);
+    }
+
+    private Port CreatePropertyPort(VisualElement _propertyField) {
+        Port port = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(PropertyField));
+        port.portColor = Color.yellow;
+        port.portName = "";
+        
+        inputContainer.Add(port);
+        return port;
     }
 
     private void CreateOutputPorts() {

@@ -9,6 +9,7 @@ public class BehaviourTreeEditor : EditorWindow {
 
     private BehaviourTree tree;
     private BehaviourTreeGraph treeGraph;
+    private BlackboardElement blackboardElement;
 
     [MenuItem("Window/Behaviour Tree/Editor")]
     public static void OpenTreeEditor() {
