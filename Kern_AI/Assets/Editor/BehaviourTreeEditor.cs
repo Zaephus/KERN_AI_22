@@ -20,7 +20,12 @@ public class BehaviourTreeEditor : EditorWindow {
 
         var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/BehaviourTreeEditor.uxml");
         visualTree.CloneTree(rootVisualElement);
+
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviourTreeEditor.uss");
+        rootVisualElement.styleSheets.Add(styleSheet);
+        
         treeGraph = rootVisualElement.Q<BehaviourTreeGraph>();
+        blackboardElement = rootVisualElement.Q<BlackboardElement>();
         
         if(tree != null) {
             PopulateWindow(tree);
@@ -36,6 +41,7 @@ public class BehaviourTreeEditor : EditorWindow {
         rootVisualElement.Bind(so);
         if(treeGraph != null) {
             treeGraph.PopulateGraph(tree);
+            blackboardElement.PopulateElement(tree.blackboard);
         }
 
     }

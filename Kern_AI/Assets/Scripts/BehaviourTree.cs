@@ -11,6 +11,15 @@ public class BehaviourTree : ScriptableObject {
     public List<BehaviourNode> nodes = new List<BehaviourNode>();
     public NodeState treeState = NodeState.Running;
 
+    public Blackboard blackboard;
+
+    public void Initialize() {
+        blackboard = ScriptableObject.CreateInstance<Blackboard>();
+        blackboard.SetValue<int>("Test Int", 14);
+        blackboard.SetValue<string>("Test String", "Hoi");
+        blackboard.SetValue<Vector3>("Test Position", new Vector3(1, 3, 4));
+    }
+
     public NodeState Update() {
 
         if(rootNode == null) {

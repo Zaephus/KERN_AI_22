@@ -17,6 +17,9 @@ public abstract class DecoratorNode : BehaviourNode {
     }
 
     public override List<BehaviourNode> GetChildren() {
+        if(child == null) {
+            return null;
+        }
         return new List<BehaviourNode>() { child };
     }
 

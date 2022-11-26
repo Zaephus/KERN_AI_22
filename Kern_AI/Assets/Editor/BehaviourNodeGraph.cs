@@ -114,7 +114,7 @@ public class BehaviourNodeGraph : Node {
     }
 
     private Port CreatePropertyPort(VisualElement _propertyField) {
-        Port port = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(PropertyField));
+        Port port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(PropertyField));
         port.portColor = Color.yellow;
         port.portName = "";
         

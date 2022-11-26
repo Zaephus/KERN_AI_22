@@ -7,7 +7,9 @@ public class BehaviourTreeRunner : MonoBehaviour {
     [SerializeField]
     private BehaviourTree tree;
 
-    private void Start() {}
+    private void Start() {
+        tree.treeState = NodeState.Running;
+    }
 
     private void Update() {
         tree.Update();
@@ -17,6 +19,7 @@ public class BehaviourTreeRunner : MonoBehaviour {
     private void OnApplicationQuit() {
         foreach(BehaviourNode node in tree.nodes) {
             node.hasStarted = false;
+            tree.treeState = NodeState.Running;
         }
     }
 

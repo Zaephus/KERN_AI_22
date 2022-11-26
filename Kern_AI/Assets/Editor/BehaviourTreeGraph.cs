@@ -19,6 +19,9 @@ public class BehaviourTreeGraph : GraphView {
         style.flexGrow = 1;
         Insert(0, new GridBackground());
 
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/BehaviourTreeEditor.uss");
+        styleSheets.Add(styleSheet);
+
         this.AddManipulator(new ContentZoomer());
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
@@ -29,6 +32,7 @@ public class BehaviourTreeGraph : GraphView {
     public void PopulateGraph(BehaviourTree _tree) {
 
         tree = _tree;
+        tree.Initialize();
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
@@ -46,14 +50,16 @@ public class BehaviourTreeGraph : GraphView {
 
             BehaviourNodeGraph parentGraph = GetNodeByGuid(node.guid) as BehaviourNodeGraph;
 
-            foreach(BehaviourNode child in tree.GetChildren(node)) {
-                BehaviourNodeGraph childGraph = GetNodeByGuid(child.guid) as BehaviourNodeGraph;
-                Edge edge = parentGraph.output.ConnectTo(childGraph.input);
-                AddElement(edge);
+            if(tree.GetChildren(node) != null) {
+                foreach(BehaviourNode child in tree?.GetChildren(node)) {
+                    BehaviourNodeGraph childGraph = GetNodeByGuid(child.guid) as BehaviourNodeGraph;
+                    Edge edge = parentGraph.output.ConnectTo(childGraph.input);
+                    AddElement(edge);
+                }
             }
 
         }
-
+        
     }
 
     private void CreateNodeGraph(BehaviourNode _node) {
