@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEditor.Experimental.GraphView;
 
-public class BehaviourNodeGraph : Node {
+public class BehaviourNodeGraph : NodeGraph {
 
     public BehaviourNode node;
 
@@ -17,6 +17,8 @@ public class BehaviourNodeGraph : Node {
     public List<Port> propertyPorts = new List<Port>();
 
     public BehaviourNodeGraph(BehaviourNode _node) {
+
+        base.behaviourNodeGraph = this;
 
         node = _node;
         if(node == null) {
@@ -43,7 +45,7 @@ public class BehaviourNodeGraph : Node {
 
             propertyField.SetEnabled(true);
 
-            Port port = CreatePropertyPort(propertyField);
+            Port port = CreatePropertyPort();
 
             Rect fieldRect = new Rect(propertyField.parent.contentRect.x, propertyField.parent.contentRect.y + i, 50, 30);
 
@@ -113,8 +115,8 @@ public class BehaviourNodeGraph : Node {
         inputContainer.Add(input);
     }
 
-    private Port CreatePropertyPort(VisualElement _propertyField) {
-        Port port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(PropertyField));
+    private Port CreatePropertyPort() {
+        Port port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(object));
         port.portColor = Color.yellow;
         port.portName = "";
         

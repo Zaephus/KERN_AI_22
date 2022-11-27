@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 
-[CreateAssetMenu(fileName = "BehaviourTree", menuName = "Behaviour Tree")]
+[CreateAssetMenu(fileName = "BehaviourTree", menuName = "Behaviour Tree/Behaviour Tree")]
 public class BehaviourTree : ScriptableObject {
 
     public BehaviourNode rootNode;
@@ -14,10 +14,16 @@ public class BehaviourTree : ScriptableObject {
     public Blackboard blackboard;
 
     public void Initialize() {
-        blackboard = ScriptableObject.CreateInstance<Blackboard>();
-        blackboard.SetValue<int>("Test Int", 14);
-        blackboard.SetValue<string>("Test String", "Hoi");
-        blackboard.SetValue<Vector3>("Test Position", new Vector3(1, 3, 4));
+
+        if(blackboard == null) {
+            Debug.LogWarning("No blackboard is not assigned");
+        }
+        else {
+            blackboard.SetValue<int>("Test Int", 14);
+            blackboard.SetValue<string>("Test String", "Hoi");
+            blackboard.SetValue<Vector3>("Test Position", new Vector3(1, 3, 4));
+        }
+
     }
 
     public NodeState Update() {
