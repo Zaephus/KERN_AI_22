@@ -1,31 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
-using System;
+using UnityEditor.Experimental.GraphView;
 
 public class BlackboardElement : VisualElement {
 
     public new class UxmlFactory : UxmlFactory<BlackboardElement, VisualElement.UxmlTraits> {}
 
     private Blackboard blackboard;
-    SerializedObject blackboardObj;
+
+    private BehaviourTreeGraph treeGraph;
 
     public BlackboardElement() {
         style.flexGrow = 1;
     }
 
-    public void PopulateElement(Blackboard _blackboard) {
+    public void PopulateElement(Blackboard _blackboard, BehaviourTreeGraph _treeGraph) {
         
         blackboard = _blackboard;
+        treeGraph = _treeGraph;
 
-        blackboardObj = new SerializedObject(blackboard);
+        if(blackboard == null) {
+            return;
+        }
 
-
-        IntegerField objectField = new IntegerField();
-        objectField.value = (int)blackboard.objects[0];
+        Clear();
 
         foreach(KeyValuePair<string, object> kvp in blackboard.values) {
             contentContainer.Add(CreateElement(kvp.Key, kvp.Value));
@@ -33,14 +36,40 @@ public class BlackboardElement : VisualElement {
 
     }
 
+    public void CreateNodeGraph(BlackboardNode _node) {
+        BlackboardNodeGraph blackboardNodeGraph = new BlackboardNodeGraph(_node);
+        treeGraph.contentViewContainer.Add(blackboardNodeGraph);
+    }
+
+    private void OnMouseDown(MouseDownEvent _evt, string _name, object _obj) {
+        CreateNode(_name, _obj);
+    }
+
     private VisualElement CreateElement(string _name, object _obj) {
         
-        VisualElement element = new VisualElement();
+        GroupBox element = new GroupBox();
         Label label = new Label(_name);
         element.Add(label);
         element.Add(CreateField(_obj));
+        element.RegisterCallback<MouseDownEvent>(evt => OnMouseDown(evt, _name, _obj), TrickleDown.TrickleDown);
 
         return element;
+
+    }
+
+    private void CreateNode(string _name, object _obj) {
+
+        BlackboardNode node = ScriptableObject.CreateInstance<BlackboardNode>();
+        node.name = _name;
+        node.nodeObject = _obj;
+        node.guid = GUID.Generate().ToString();
+
+        blackboard.nodes.Add(node);
+
+        CreateNodeGraph(node);
+
+        AssetDatabase.AddObjectToAsset(node, blackboard);
+        AssetDatabase.SaveAssets();
 
     }
 

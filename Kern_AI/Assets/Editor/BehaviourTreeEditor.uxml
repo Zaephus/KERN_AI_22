@@ -3,7 +3,9 @@
     <SplitView fixed-pane-index="0" fixed-pane-initial-dimension="200" orientation="Horizontal">
         <ui:VisualElement name="LeftPanel" fixed-pane-index="1">
             <ui:Label text="Blackboard" display-tooltip-when-elided="true" style="margin-left: 16px;" />
-            <BlackboardElement />
+            <BlackboardElement>
+                <ui:VisualElement />
+            </BlackboardElement>
         </ui:VisualElement>
         <ui:VisualElement name="RightPanel">
             <BehaviourTreeGraph focusable="true">
