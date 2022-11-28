@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BehaviourTreeRunner : MonoBehaviour {
 
+    public int testint = 10;
+
     [SerializeField]
     private BehaviourTree tree;
 
@@ -12,6 +14,7 @@ public class BehaviourTreeRunner : MonoBehaviour {
     }
 
     private void Update() {
+        tree.blackboard.SetValue<int>("Test Int", testint);
         tree.Update();
     }
 

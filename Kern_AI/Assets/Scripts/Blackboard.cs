@@ -10,24 +10,41 @@ public class Blackboard : ScriptableObject {
 
     public List<BlackboardNode> nodes = new List<BlackboardNode>();
 
-    public Dictionary<string, object> values = new Dictionary<string, object>();
+    public List<BlackboardField> fields = new List<BlackboardField>();
 
     public T GetValue<T>(string _name) {
-        return values.ContainsKey(_name) ? (T)values[_name] : default(T);
+        if(fields?.Find(x => x.dataName == _name)) {
+            return (T)fields[fields.IndexOf(fields.Find(x => x.dataName == _name))].dataObject.GetValue();
+        }
+        else {
+            return default(T);
+        }
     }
 
     public void SetValue<T>(string _name, T _value) {
-        if(values.ContainsKey(_name)) {
-            values[_name] = _value;
+        if(fields?.Find(x => x.dataName == _name)) {
+            fields[fields.IndexOf(fields.Find(x => x.dataName == _name))].dataObject.SetValue(_value);
         }
         else {
-            values.Add(_name, _value);
+            BlackboardField field = ScriptableObject.CreateInstance<BlackboardField>();
+            field.name = "Blackboard Field";
+            field.dataName = _name;
+            field.dataObject = new SerializableObject();
+            field.dataObject.SetValue(_value);
+
+            fields.Add(field);
+
+            AssetDatabase.AddObjectToAsset(field, this);
+            AssetDatabase.SaveAssets();
         }
     }
 
     public void RemoveValue(string _name) {
-        if(values.ContainsKey(_name)) {
-            values.Remove(_name);
+        if(fields?.Find(x => x.dataName == _name)) {
+            BlackboardField field = fields.Find(x => x.dataName == _name);
+            fields.Remove(field);
+            AssetDatabase.RemoveObjectFromAsset(field);
+            AssetDatabase.SaveAssets();
         }
     }
     

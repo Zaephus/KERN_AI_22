@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ public class BehaviourNodeGraph : NodeGraph {
     public Port input;
     public Port output;
 
-    public List<Port> propertyPorts = new List<Port>();
+    public List<PropertyPort> propertyPorts = new List<PropertyPort>();
+
+    public List<SerializedProperty> propertyFields = new List<SerializedProperty>();
+    public Dictionary<SerializedProperty, SerializableObject> propertyObjectsDict = new Dictionary<SerializedProperty, SerializableObject>();
 
     public BehaviourNodeGraph(BehaviourNode _node) {
 
@@ -32,8 +36,6 @@ public class BehaviourNodeGraph : NodeGraph {
 
         SerializedObject nodeObj = new SerializedObject(node);
 
-        int i = -5;
-
         foreach(string s in GetNodeProperties().Keys) {
         
             SerializedProperty nodeProperty = nodeObj.FindProperty(s);
@@ -41,13 +43,19 @@ public class BehaviourNodeGraph : NodeGraph {
             PropertyField propertyField = new PropertyField(nodeProperty);
             propertyField.Bind(nodeObj);
 
-            extensionContainer.Add(propertyField);
+            propertyFields.Add(nodeProperty);
+            propertyObjectsDict.Add(nodeProperty, null);
 
+            VisualElement propertyContainer = new VisualElement();
+            extensionContainer.Add(propertyContainer);
+
+            propertyContainer.Add(propertyField);
+            
             propertyField.SetEnabled(true);
 
-            Port port = CreatePropertyPort();
+            PropertyPort port = CreatePropertyPort(nodeProperty.type);
 
-            Rect fieldRect = new Rect(propertyField.parent.contentRect.x, propertyField.parent.contentRect.y + i, 50, 30);
+            Rect fieldRect = new Rect(propertyField.parent.contentRect.x, propertyField.parent.contentRect.y-5, 50, 30);
 
             switch(GetNodeProperties()[s]) {
                 case NodePropertyType.Null:
@@ -71,8 +79,6 @@ public class BehaviourNodeGraph : NodeGraph {
 
             }
 
-            i += 19;
-
         }
 
         CreateInputPorts();
@@ -95,7 +101,7 @@ public class BehaviourNodeGraph : NodeGraph {
         Dictionary<string, NodePropertyType> properties = new Dictionary<string, NodePropertyType>();
 
         FieldInfo[] infos = node.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
-        foreach(MemberInfo info in infos) {
+        foreach(FieldInfo info in infos) {
             NodeProperty nodeProperty = info.GetCustomAttribute(typeof(NodeProperty)) as NodeProperty;
             if(nodeProperty != null) {
                 properties.Add(info.Name, nodeProperty.propertyType);
@@ -106,6 +112,36 @@ public class BehaviourNodeGraph : NodeGraph {
 
     }
 
+    private void OnPropertyPortConnect(PropertyPort _port, Edge _edge) {
+
+        if(!propertyPorts.Contains(_port)) {
+            Debug.Log("Property port was not found");
+            return;
+        }
+
+        Debug.Log("Connecting Ports");
+
+        int portIndex = propertyPorts.IndexOf(_port);
+
+        SerializedProperty propertyField = propertyFields[portIndex];
+
+        BlackboardNodeGraph dataGraph = _edge.output.node as BlackboardNodeGraph;
+
+        propertyObjectsDict[propertyField] = dataGraph.node.nodeObject;
+        Debug.Log(propertyField.intValue);
+        propertyField.intValue = (int)propertyObjectsDict[propertyField].GetValue(); 
+
+        SerializedObject nodeObj = new SerializedObject(node);   
+
+        propertyField.serializedObject.ApplyModifiedProperties();
+
+        nodeObj.FindProperty(propertyField.propertyPath).intValue = (int)propertyObjectsDict[propertyField].GetValue();
+        Debug.Log(propertyField.intValue);
+
+    }
+
+    private void OnPropertyPortDisconnect(PropertyPort _port, Edge _edge) {}
+
     private void CreateInputPorts() {
         input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Multi, typeof(BehaviourNode));
         if(input == null) {
@@ -115,10 +151,58 @@ public class BehaviourNodeGraph : NodeGraph {
         inputContainer.Add(input);
     }
 
-    private Port CreatePropertyPort() {
-        Port port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(object));
+    private PropertyPort CreatePropertyPort(object _obj) {
+
+        PropertyPort port;
+
+        switch(_obj) {
+
+            case "int":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(int));
+                break;
+                
+            case "float":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(float));
+                break;
+
+            case "long":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(long));
+                break;
+
+            case "string":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(string));
+                break;
+
+            case "Vector2":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(Vector2));
+                break;
+
+            case "Vector2Int":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(Vector2Int));
+                break;
+
+            case "Vector3":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(Vector3));
+                break;
+
+            case "Vector3Int":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(Vector3Int));
+                break;
+
+            case "PPtr<$Object>":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(UnityEngine.Object));
+                break;
+
+            default:
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(object));
+                break;
+        }
+        
         port.portColor = Color.yellow;
         port.portName = "";
+
+        port.OnConnect += OnPropertyPortConnect;
+        port.OnDisconnect += OnPropertyPortDisconnect;
         
         inputContainer.Add(port);
         return port;

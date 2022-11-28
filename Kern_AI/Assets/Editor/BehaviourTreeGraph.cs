@@ -13,7 +13,7 @@ public class BehaviourTreeGraph : GraphView {
 
     public BlackboardElement blackboardElement;
 
-    private BehaviourTree tree;
+    public BehaviourTree tree;
     private bool hasTree;
 
     public BehaviourTreeGraph() {
@@ -71,6 +71,17 @@ public class BehaviourTreeGraph : GraphView {
                     }
                 }
 
+            }
+
+            foreach(BlackboardNode node in tree.blackboard.nodes) {
+
+                BlackboardNodeGraph parentGraph = GetNodeByGuid(node.guid) as BlackboardNodeGraph;
+
+                if(parentGraph.node.connectedNode != null) {
+                    BehaviourNodeGraph childGraph = GetNodeByGuid(parentGraph.node.connectedNode.guid) as BehaviourNodeGraph;
+                    Edge edge = parentGraph.output.ConnectTo(childGraph.propertyPorts[parentGraph.node.connectedPortIndex]);
+                    AddElement(edge);
+                }
             }
 
         }
@@ -158,6 +169,10 @@ public class BehaviourTreeGraph : GraphView {
                     if(parentGraph.behaviourNodeGraph != null && childGraph.behaviourNodeGraph != null) {
                         tree.RemoveChild(parentGraph.behaviourNodeGraph.node, childGraph.behaviourNodeGraph.node);
                     }
+                    if(parentGraph.blackboardNodeGraph != null && childGraph.behaviourNodeGraph != null) {
+                        parentGraph.blackboardNodeGraph.node.connectedNode = null;
+                        parentGraph.blackboardNodeGraph.node.connectedPortIndex = -1;
+                    }
                 }
             }
         }
@@ -168,6 +183,10 @@ public class BehaviourTreeGraph : GraphView {
                 NodeGraph childGraph = edge.input.node as NodeGraph;
                 if(parentGraph.behaviourNodeGraph != null && childGraph.behaviourNodeGraph != null) {
                     tree.AddChild(parentGraph.behaviourNodeGraph.node, childGraph.behaviourNodeGraph.node);
+                }
+                if(parentGraph.blackboardNodeGraph != null && childGraph.behaviourNodeGraph != null) {
+                    parentGraph.blackboardNodeGraph.node.connectedNode = childGraph.behaviourNodeGraph.node;
+                    parentGraph.blackboardNodeGraph.node.connectedPortIndex = childGraph.behaviourNodeGraph.propertyPorts.IndexOf((PropertyPort)edge.input);
                 }
             }
         }

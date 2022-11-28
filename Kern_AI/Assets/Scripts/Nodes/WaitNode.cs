@@ -7,9 +7,11 @@ public class WaitNode : ActionNode {
     [NodeProperty(NodePropertyType.Null)]
     public float duration = 1f;
     [NodeProperty(NodePropertyType.Null)]
-    public float hoi = 2f;
+    public bool damn = true;
+    [NodeProperty(NodePropertyType.Null)]
+    public int hoi = 2;
     [NodeProperty(NodePropertyType.ReadOnly)]
-    public float readOnly = 1.3f;
+    public Object readOnly = new Object();
     private float startTime;
 
     protected override void OnStart() {

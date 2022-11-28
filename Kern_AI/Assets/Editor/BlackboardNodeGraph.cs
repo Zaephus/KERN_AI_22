@@ -12,7 +12,9 @@ public class BlackboardNodeGraph : NodeGraph {
 
     public BlackboardNode node;
 
-    public Port output;
+    public PropertyPort output;
+
+    private VisualElement field;
 
     public BlackboardNodeGraph(BlackboardNode _node) {
 
@@ -29,7 +31,11 @@ public class BlackboardNodeGraph : NodeGraph {
         style.left = node.nodeGraphPosition.x;
         style.top = node.nodeGraphPosition.y;
 
-        extensionContainer.Add(CreateField(_node.nodeObject));
+        node.nodeObject.OnValueChanged += UpdateField;
+
+        field = CreateField(_node.nodeObject.GetValue());
+
+        extensionContainer.Add(field);
 
         CreatePropertyPort();
 
@@ -45,8 +51,58 @@ public class BlackboardNodeGraph : NodeGraph {
         node.nodeGraphPosition.y = newPos.yMin;
     }
 
+    private void UpdateField(object _obj) {
+        extensionContainer.Remove(field);
+        field = CreateField(_obj);
+        extensionContainer.Add(field);
+    }
+
     private void CreatePropertyPort() {
-        output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(object));
+
+        switch(node.nodeObject.GetValue()) {
+
+            case int:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(int));
+                break;
+
+            case float:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(float));
+                break;
+
+            case long:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(long));
+                break;
+
+            case string:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(string)); 
+                break;
+
+            case Vector2:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Vector2));
+                break;
+
+            case Vector2Int:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Vector2Int));
+                break;
+
+            case Vector3:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Vector3));
+                break;
+
+            case Vector3Int:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Vector3Int));
+                break;
+
+            case UnityEngine.Object:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(UnityEngine.Object));
+                break;
+
+            default:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(object));
+                break;
+
+        }
+        
         output.portColor = Color.yellow;
         output.portName = "";
 
