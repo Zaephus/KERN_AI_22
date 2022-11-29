@@ -32,7 +32,7 @@ MonoBehaviour:
   nodeGraphPosition: {x: 752, y: 408.8}
   guid: eaeab7789c7f0e04eb00ed15e68a4688
   hasStarted: 0
-  state: 0
+  state: 1
   duration: 1
   damn: 1
   hoi: 2
@@ -95,10 +95,10 @@ MonoBehaviour:
   nodeGraphPosition: {x: 284.4, y: 408.8}
   guid: 1986da290868e864b84117f7d36d186d
   hasStarted: 0
-  state: 1
+  state: 0
   duration: 1
   damn: 1
-  hoi: 14
+  hoi: 103
   readOnly: {fileID: 0}
 --- !u!114 &4262113377142941465
 MonoBehaviour:

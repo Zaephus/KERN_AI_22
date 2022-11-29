@@ -39,9 +39,9 @@ public class BlackboardField : ScriptableObject {
         OnClick?.Invoke(dataName, dataObject);
     }
 
-    private void UpdateField(object _obj) {
+    private void UpdateField(SerializableObject _obj) {
         element.Remove(field);
-        field = CreateField(_obj);
+        field = CreateField(_obj.GetValue());
         element.Add(field);
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class SerializableObject : ISerializationCallbackReceiver {
 
-    public Action<object> OnValueChanged;
+    public Action<SerializableObject> OnValueChanged;
 
     private object value;
 
@@ -16,7 +16,7 @@ public class SerializableObject : ISerializationCallbackReceiver {
     public void SetValue(object _value) {
         if(value != _value) {
             value = _value;
-            OnValueChanged?.Invoke(value);
+            OnValueChanged?.Invoke(this);
         }
     }
 

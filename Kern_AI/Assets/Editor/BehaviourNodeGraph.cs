@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,10 +17,9 @@ public class BehaviourNodeGraph : NodeGraph {
     public Port output;
 
     public List<PropertyPort> propertyPorts = new List<PropertyPort>();
-
     public List<SerializedProperty> propertyFields = new List<SerializedProperty>();
-    public Dictionary<SerializedProperty, SerializableObject> propertyObjectsDict = new Dictionary<SerializedProperty, SerializableObject>();
-
+    public List<SerializableObject> propertyObjects = new List<SerializableObject>();
+    
     public BehaviourNodeGraph(BehaviourNode _node) {
 
         base.behaviourNodeGraph = this;
@@ -44,7 +44,7 @@ public class BehaviourNodeGraph : NodeGraph {
             propertyField.Bind(nodeObj);
 
             propertyFields.Add(nodeProperty);
-            propertyObjectsDict.Add(nodeProperty, null);
+            propertyObjects.Add(null);
 
             VisualElement propertyContainer = new VisualElement();
             extensionContainer.Add(propertyContainer);
@@ -115,32 +115,92 @@ public class BehaviourNodeGraph : NodeGraph {
     private void OnPropertyPortConnect(PropertyPort _port, Edge _edge) {
 
         if(!propertyPorts.Contains(_port)) {
-            Debug.Log("Property port was not found");
+            Debug.LogWarning("Property port was not found");
             return;
         }
 
         Debug.Log("Connecting Ports");
+        Debug.Log(propertyPorts.Count);
+        Debug.Log(propertyFields.Count);
 
         int portIndex = propertyPorts.IndexOf(_port);
 
-        SerializedProperty propertyField = propertyFields[portIndex];
+        SerializedProperty property = propertyFields[portIndex];
 
         BlackboardNodeGraph dataGraph = _edge.output.node as BlackboardNodeGraph;
-
-        propertyObjectsDict[propertyField] = dataGraph.node.nodeObject;
-        Debug.Log(propertyField.intValue);
-        propertyField.intValue = (int)propertyObjectsDict[propertyField].GetValue(); 
-
-        SerializedObject nodeObj = new SerializedObject(node);   
-
-        propertyField.serializedObject.ApplyModifiedProperties();
-
-        nodeObj.FindProperty(propertyField.propertyPath).intValue = (int)propertyObjectsDict[propertyField].GetValue();
-        Debug.Log(propertyField.intValue);
+        propertyObjects[portIndex] = dataGraph.node.nodeObject;
+        dataGraph.node.nodeObject.OnValueChanged += UpdateField;
+        
+        UpdateField(dataGraph.node.nodeObject);
 
     }
 
-    private void OnPropertyPortDisconnect(PropertyPort _port, Edge _edge) {}
+    private void OnPropertyPortDisconnect(PropertyPort _port, Edge _edge) {
+
+        Debug.Log("Disconnecting Ports");
+
+        int portIndex = propertyPorts.IndexOf(_port);
+
+        SerializedProperty property = propertyFields[portIndex];
+
+        propertyObjects[portIndex].OnValueChanged -= UpdateField;
+        propertyObjects[portIndex] = null;
+
+        property.serializedObject.ApplyModifiedProperties();
+
+    }
+
+    private void UpdateField(SerializableObject _obj) {
+
+        int index = propertyObjects.IndexOf(_obj);
+
+        SerializedProperty property = propertyFields[index];
+
+        SerializedObject nodeObj = property.serializedObject;
+
+        switch(_obj.GetValue()) {
+
+            case int:
+                property.intValue = (int)_obj.GetValue();
+                break;
+
+            case float:
+                property.floatValue = (float)_obj.GetValue();
+                break;
+
+            case long:
+                property.longValue = (long)_obj.GetValue();
+                break;
+
+            case string:
+                property.stringValue = (string)_obj.GetValue();
+                break;
+
+            case Vector2:
+                property.vector2Value = (Vector2)_obj.GetValue();
+                break;
+
+            case Vector2Int:
+                property.vector2IntValue = (Vector2Int)_obj.GetValue();
+                break;
+
+            case Vector3:
+                property.vector3Value = (Vector3)_obj.GetValue();
+                break;
+
+            case Vector3Int:
+                property.vector3IntValue = (Vector3Int)_obj.GetValue();
+                break;
+
+            case UnityEngine.Object:
+                property.objectReferenceValue = (UnityEngine.Object)_obj.GetValue();
+                break;
+
+        }
+
+        nodeObj.ApplyModifiedProperties();
+
+    }
 
     private void CreateInputPorts() {
         input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Multi, typeof(BehaviourNode));
