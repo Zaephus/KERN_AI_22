@@ -11,7 +11,7 @@ public class WaitNode : ActionNode {
     [NodeProperty(NodePropertyType.Null)]
     public int hoi = 2;
     [NodeProperty(NodePropertyType.ReadOnly)]
-    public Object readOnly = new Object();
+    public int readOnly = 8;
     private float startTime;
 
     protected override void OnStart() {

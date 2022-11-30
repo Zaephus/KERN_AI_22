@@ -25,15 +25,15 @@ public class BlackboardNodeGraph : NodeGraph {
             return;
         }
 
-        base.title = _node.name;
+        base.title = _node.name.Replace("Blackboard ", "");;
         viewDataKey = node.guid;
 
         style.left = node.nodeGraphPosition.x;
         style.top = node.nodeGraphPosition.y;
 
-        node.nodeObject.OnValueChanged += UpdateField;
+        node.field.dataObject.OnValueChanged += UpdateField;
 
-        field = CreateField(_node.nodeObject.GetValue());
+        field = CreateField(_node.field.dataObject.GetValue());
 
         extensionContainer.Add(field);
 
@@ -59,7 +59,7 @@ public class BlackboardNodeGraph : NodeGraph {
 
     private void CreatePropertyPort() {
 
-        switch(node.nodeObject.GetValue()) {
+        switch(node.field.dataObject.GetValue()) {
 
             case int:
                 output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(int));

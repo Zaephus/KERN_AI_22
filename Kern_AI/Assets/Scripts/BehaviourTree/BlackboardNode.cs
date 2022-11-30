@@ -10,7 +10,7 @@ public class BlackboardNode : ScriptableObject {
 
     public string guid;
 
-    public SerializableObject nodeObject;
+    public BlackboardField field;
 
     public BehaviourNode connectedNode;
     public int connectedPortIndex;

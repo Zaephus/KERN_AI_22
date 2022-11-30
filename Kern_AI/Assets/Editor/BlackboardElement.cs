@@ -45,18 +45,16 @@ public class BlackboardElement : VisualElement {
         treeGraph.contentViewContainer.Add(blackboardNodeGraph);
     }
 
-    private void CreateNode(string _name, SerializableObject _obj) {
+    private void CreateNode(string _name, BlackboardField _field) {
 
         BlackboardNode node = ScriptableObject.CreateInstance<BlackboardNode>();
-        node.name = _name;
-        node.nodeObject = _obj;
+        node.name = "Blackboard " + _name;
+        node.field = _field;
         node.guid = GUID.Generate().ToString();
 
         blackboard.nodes.Add(node);
 
         CreateNodeGraph(node);
-
-        node.name = "Blackboard " + _name;
 
         AssetDatabase.AddObjectToAsset(node, treeGraph.tree);
         AssetDatabase.SaveAssets();

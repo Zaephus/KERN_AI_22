@@ -11,7 +11,7 @@ public class BlackboardField : ScriptableObject {
     public string dataName;
     public SerializableObject dataObject;
 
-    public Action<string, SerializableObject> OnClick;
+    public Action<string, BlackboardField> OnClick;
 
     private VisualElement field;
 
@@ -36,7 +36,7 @@ public class BlackboardField : ScriptableObject {
     }
 
     private void OnMouseDown(MouseDownEvent _evt) {
-        OnClick?.Invoke(dataName, dataObject);
+        OnClick?.Invoke(dataName, this);
     }
 
     private void UpdateField(SerializableObject _obj) {

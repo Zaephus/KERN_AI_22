@@ -17,7 +17,8 @@ public class BehaviourNodeGraph : NodeGraph {
     public Port output;
 
     public List<PropertyPort> propertyPorts = new List<PropertyPort>();
-    public List<SerializedProperty> propertyFields = new List<SerializedProperty>();
+    public List<SerializedProperty> properties = new List<SerializedProperty>();
+    public List<PropertyField> propertyFields = new List<PropertyField>();
     public List<SerializableObject> propertyObjects = new List<SerializableObject>();
     
     public BehaviourNodeGraph(BehaviourNode _node) {
@@ -43,7 +44,8 @@ public class BehaviourNodeGraph : NodeGraph {
             PropertyField propertyField = new PropertyField(nodeProperty);
             propertyField.Bind(nodeObj);
 
-            propertyFields.Add(nodeProperty);
+            properties.Add(nodeProperty);
+            propertyFields.Add(propertyField);
             propertyObjects.Add(null);
 
             VisualElement propertyContainer = new VisualElement();
@@ -61,15 +63,11 @@ public class BehaviourNodeGraph : NodeGraph {
                 case NodePropertyType.Null:
                     propertyField.parent.style.paddingLeft = new StyleLength(20f);
                     propertyField.parent.Add(port);
-                    port.SetPosition(fieldRect);
-                    propertyPorts.Add(port);
                     break;
 
                 case NodePropertyType.ReadOnly:
                     propertyField.parent.style.paddingLeft = new StyleLength(20f);
                     propertyField.parent.Add(port);
-                    port.SetPosition(fieldRect);
-                    propertyPorts.Add(port);
                     propertyField.SetEnabled(false);
                     break;
 
@@ -78,6 +76,9 @@ public class BehaviourNodeGraph : NodeGraph {
                     break;
 
             }
+
+            port.SetPosition(fieldRect);
+            propertyPorts.Add(port);
 
         }
 
@@ -119,34 +120,32 @@ public class BehaviourNodeGraph : NodeGraph {
             return;
         }
 
-        Debug.Log("Connecting Ports");
-        Debug.Log(propertyPorts.Count);
-        Debug.Log(propertyFields.Count);
-
         int portIndex = propertyPorts.IndexOf(_port);
 
-        SerializedProperty property = propertyFields[portIndex];
+        SerializedProperty property = properties[portIndex];
 
         BlackboardNodeGraph dataGraph = _edge.output.node as BlackboardNodeGraph;
-        propertyObjects[portIndex] = dataGraph.node.nodeObject;
-        dataGraph.node.nodeObject.OnValueChanged += UpdateField;
+        propertyObjects[portIndex] = dataGraph.node.field.dataObject;
+        dataGraph.node.field.dataObject.OnValueChanged += UpdateField;
+
+        propertyFields[portIndex].SetEnabled(false);
         
-        UpdateField(dataGraph.node.nodeObject);
+        UpdateField(dataGraph.node.field.dataObject);
 
     }
 
     private void OnPropertyPortDisconnect(PropertyPort _port, Edge _edge) {
 
-        Debug.Log("Disconnecting Ports");
-
         int portIndex = propertyPorts.IndexOf(_port);
 
-        SerializedProperty property = propertyFields[portIndex];
+        SerializedProperty property = properties[portIndex];
 
         propertyObjects[portIndex].OnValueChanged -= UpdateField;
         propertyObjects[portIndex] = null;
 
-        property.serializedObject.ApplyModifiedProperties();
+        if(GetNodeProperties()[property.propertyPath] != NodePropertyType.ReadOnly) {
+            propertyFields[portIndex].SetEnabled(true);
+        }
 
     }
 
@@ -154,7 +153,7 @@ public class BehaviourNodeGraph : NodeGraph {
 
         int index = propertyObjects.IndexOf(_obj);
 
-        SerializedProperty property = propertyFields[index];
+        SerializedProperty property = properties[index];
 
         SerializedObject nodeObj = property.serializedObject;
 

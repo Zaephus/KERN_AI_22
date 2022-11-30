@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class BehaviourTreeRunner : MonoBehaviour {
 
@@ -14,8 +15,12 @@ public class BehaviourTreeRunner : MonoBehaviour {
     }
 
     private void Update() {
-        tree.blackboard.SetValue<int>("Test Int", testint);
+        //tree.blackboard.SetValue<int>("Test Int", testint);
         tree.Update();
+    }
+
+    private void OnValidate() {
+        tree.blackboard.SetValue<int>("Test Int", testint);
     }
 
     #if UNITY_EDITOR

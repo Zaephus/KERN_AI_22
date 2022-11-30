@@ -16,7 +16,7 @@ MonoBehaviour:
   guid: 554948e3cb8a49c4db40b2c56c4b47d3
   hasStarted: 0
   state: 1
-  message: Message 1
+  message: message
 --- !u!114 &-7264291078199972696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   duration: 1
   damn: 1
   hoi: 2
-  readOnly: {fileID: 0}
+  readOnly: 8
 --- !u!114 &-3692065991916529818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +58,23 @@ MonoBehaviour:
   - {fileID: 457403593330435299}
   - {fileID: 4262113377142941465}
   - {fileID: -7264291078199972696}
+--- !u!114 &-1686768971669401234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test Int
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 132.8, y: 505.59995}
+  guid: 821bd1ba441bbaf4c8ea4023d8b2c8d3
+  field: {fileID: 1523431213069925966, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 457403593330435299}
+  connectedPortIndex: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,12 +111,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeGraphPosition: {x: 284.4, y: 408.8}
   guid: 1986da290868e864b84117f7d36d186d
-  hasStarted: 0
+  hasStarted: 1
   state: 0
   duration: 1
   damn: 1
-  hoi: 103
-  readOnly: {fileID: 0}
+  hoi: 14
+  readOnly: 10
 --- !u!114 &4262113377142941465
 MonoBehaviour:
   m_ObjectHideFlags: 0
