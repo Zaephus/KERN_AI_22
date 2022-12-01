@@ -8,8 +8,12 @@ public class Actor : MonoBehaviour {
 
     //public weapon weapon;
 
-    public void Move(Vector2 _dir) {
+    protected void Move(Vector2 _dir) {
         transform.position += new Vector3(_dir.x, 0, _dir.y).normalized * moveSpeed * Time.deltaTime;
+    }
+
+    protected void LookAtTarget(Vector3 _target) {
+        transform.LookAt(_target);
     }
 
     //Add item as parameter
