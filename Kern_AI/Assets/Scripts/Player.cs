@@ -31,6 +31,14 @@ public class Player : Actor {
 
         cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, transform.position.z);
 
+        if(Input.GetButtonDown("Interact")) {
+            PickupItem();
+        }
+
+        if(Input.GetButtonDown("Attack")) {
+            Attack();
+        }
+
     }
 
 }
