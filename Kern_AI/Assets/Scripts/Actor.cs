@@ -1,10 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Actor : MonoBehaviour {
 
+    public int health;
+
+    public Hitbox hitbox;
+
     protected float moveSpeed;
+
+    protected Action pickedUpItem;
 
     [SerializeField]
     private Weapon weapon;
@@ -21,19 +28,16 @@ public class Actor : MonoBehaviour {
 
     public void PickupItem() {
         if(weapon == null) {
-            RaycastHit hit;
-            if(Physics.SphereCast(transform.position, transform.localScale.y, transform.forward, out hit)) {
-                if(hit.collider.GetComponent<Weapon>() != null) {
-                    Weapon w = hit.collider.GetComponent<Weapon>();
-                    //w.transform.parent = holdTransform;
+            foreach(Collider c in Physics.OverlapSphere(transform.position, 1)) {
+                if(c.GetComponent<Weapon>() != null) {
+                    Weapon w = c.GetComponent<Weapon>();
                     w.transform.SetParent(holdTransform);
                     w.transform.localPosition = w.holdPositionOffset;
                     w.transform.localRotation = Quaternion.Euler(w.holdRotationOffset);
                     weapon = w;
+                    pickedUpItem?.Invoke();
+                    break;
                 }
-            }
-            else {
-                Debug.LogWarning("No weapon in range");
             }
         }
     }
@@ -45,6 +49,19 @@ public class Actor : MonoBehaviour {
         else {
             Debug.LogWarning("Actor has no weapon");
         }
+    }
+
+    public void TakeDamage(int _dmg) {
+        health -= _dmg;
+
+        if(health <= 0) {
+            Die();
+        }
+
+    }
+
+    protected virtual void Die() {
+        Destroy(gameObject);
     }
 
 }

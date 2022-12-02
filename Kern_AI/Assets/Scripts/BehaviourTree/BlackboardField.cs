@@ -67,6 +67,12 @@ public class BlackboardField : ScriptableObject {
                 longField.SetEnabled(false);
                 return longField;
 
+            case bool:
+                Toggle toggle = new Toggle();
+                toggle.value = (bool)_obj;
+                toggle.SetEnabled(false);
+                return toggle;
+
             case string:
                 TextField textField = new TextField();
                 textField.value = (string)_obj;

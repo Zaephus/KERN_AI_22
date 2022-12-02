@@ -12,7 +12,7 @@ public class SelectorNode : CompositeNode {
 
     protected override NodeState Evaluate() {
 
-        if(GetChildren() == null && GetChildren().Count < 1) {
+        if(GetChildren() == null || GetChildren().Count < 1) {
             Debug.LogWarning("Selector Node has no children.");
             return NodeState.Failure;
         }

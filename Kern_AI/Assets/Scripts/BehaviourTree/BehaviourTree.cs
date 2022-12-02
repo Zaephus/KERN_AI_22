@@ -18,14 +18,6 @@ public class BehaviourTree : ScriptableObject {
         if(blackboard == null) {
             Debug.LogWarning("No blackboard is assigned");
         }
-        else {
-            //blackboard.RemoveValue("Test Int");
-            //blackboard.RemoveValue("Test String");
-            //blackboard.RemoveValue("Test Position");
-            blackboard.SetValue<int>("Test Int", 14);
-            blackboard.SetValue<string>("Test String", "Hoi");
-            blackboard.SetValue<Vector3>("Test Position", new Vector3(1, 3, 4));
-        }
 
     }
 

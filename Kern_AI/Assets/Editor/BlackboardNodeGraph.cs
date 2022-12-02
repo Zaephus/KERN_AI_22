@@ -73,6 +73,10 @@ public class BlackboardNodeGraph : NodeGraph {
                 output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(long));
                 break;
 
+            case bool:
+                output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
+                break;
+
             case string:
                 output = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(string)); 
                 break;
@@ -130,6 +134,12 @@ public class BlackboardNodeGraph : NodeGraph {
                 longField.value = (long)_obj;
                 longField.SetEnabled(false);
                 return longField;
+
+            case bool:
+                Toggle toggle = new Toggle();
+                toggle.value = (bool)_obj;
+                toggle.SetEnabled(false);
+                return toggle;
 
             case string:
                 TextField textField = new TextField();

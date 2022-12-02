@@ -13,8 +13,16 @@ public class Player : Actor {
     private float horizontal;
     private float vertical;
 
+    public GenericObject<Transform> test;
+
     public void Start() {
+
+        test = new GenericObject<Transform>(transform);
         moveSpeed = playerMoveSpeed;
+
+        Debug.Log(test.Data);
+        Debug.Log(test.GetType());
+        Debug.Log(test.GetObjectType());
     }
 
     public void Update() {

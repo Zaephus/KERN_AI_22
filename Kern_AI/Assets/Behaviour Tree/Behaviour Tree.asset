@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7650658968485859089
+--- !u!114 &-6145681653722789231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
+  m_Name: SequencerNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 28.800003, y: 408.8}
-  guid: 554948e3cb8a49c4db40b2c56c4b47d3
+  nodeGraphPosition: {x: 67.99997, y: 602.53}
+  guid: c8ed9f0a3e5289d4faa1767b5cfb5ffb
   hasStarted: 0
   state: 1
-  message: message
---- !u!114 &-7264291078199972696
+  children: []
+--- !u!114 &-5320612080742297067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26,17 +26,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: ed59af5768b70164c82461252722a654, type: 3}
+  m_Name: SelectorNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 752, y: 408.8}
-  guid: eaeab7789c7f0e04eb00ed15e68a4688
+  nodeGraphPosition: {x: -57.607513, y: 476.65253}
+  guid: 47aae9bf2e3e82b489408d986b7fc68d
   hasStarted: 0
   state: 1
-  duration: 1
-  damn: 1
-  hoi: 2
-  readOnly: 8
+  children:
+  - {fileID: 6013733508377111097}
+  - {fileID: -6145681653722789231}
 --- !u!114 &-3692065991916529818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,12 +51,9 @@ MonoBehaviour:
   nodeGraphPosition: {x: 262.39996, y: 194.79999}
   guid: d67391bf76885cc4fb7eba67132b9969
   hasStarted: 0
-  state: 0
+  state: 1
   children:
-  - {fileID: -7650658968485859089}
-  - {fileID: 457403593330435299}
-  - {fileID: 4262113377142941465}
-  - {fileID: -7264291078199972696}
+  - {fileID: 3025662659519496912}
 --- !u!114 &-1686768971669401234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,8 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeGraphPosition: {x: 132.8, y: 505.59995}
   guid: 821bd1ba441bbaf4c8ea4023d8b2c8d3
-  field: {fileID: 1523431213069925966, guid: 2156514f127b56a4db128f838277937a, type: 2}
-  connectedNode: {fileID: 457403593330435299}
+  field: {fileID: 0}
+  connectedNode: {fileID: 0}
   connectedPortIndex: 2
 --- !u!114 &11400000
 MonoBehaviour:
@@ -91,13 +87,13 @@ MonoBehaviour:
   nodes:
   - {fileID: 6883814120865556253}
   - {fileID: -3692065991916529818}
-  - {fileID: -7650658968485859089}
-  - {fileID: 457403593330435299}
-  - {fileID: -7264291078199972696}
-  - {fileID: 4262113377142941465}
+  - {fileID: 3025662659519496912}
+  - {fileID: -5320612080742297067}
+  - {fileID: -6145681653722789231}
+  - {fileID: 6013733508377111097}
   treeState: 0
   blackboard: {fileID: 11400000, guid: 2156514f127b56a4db128f838277937a, type: 2}
---- !u!114 &457403593330435299
+--- !u!114 &3025662659519496912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,34 +102,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
-  m_Name: WaitNode
+  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
+  m_Name: SequencerNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 284.4, y: 408.8}
-  guid: 1986da290868e864b84117f7d36d186d
-  hasStarted: 1
-  state: 0
-  duration: 1
-  damn: 1
-  hoi: 14
-  readOnly: 10
---- !u!114 &4262113377142941465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 495.19998, y: 408.8}
-  guid: b9f5e1124a8dc2341ae2053f757d952a
+  nodeGraphPosition: {x: 164.00003, y: 337.4001}
+  guid: f21239b0c2c0bb149a907c5c362ac9e3
   hasStarted: 0
   state: 1
-  message: Message 2
+  children:
+  - {fileID: -5320612080742297067}
+--- !u!114 &3510167797581042150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Has Weapon
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -349, y: 629.39996}
+  guid: cc1e632f4c6a36d468d9c69cf9f09274
+  field: {fileID: -1108073610862772868, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 6013733508377111097}
+  connectedPortIndex: 0
+--- !u!114 &6013733508377111097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5065ae297ace4b88ed82ec2172329, type: 3}
+  m_Name: ConditionalNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -204.20001, y: 602.39996}
+  guid: b754558ddf4fc984991a6de2acd8cdfa
+  hasStarted: 0
+  state: 2
+  condition: 0
 --- !u!114 &6883814120865556253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed5ff5013b68e547b9c9045aaa76f4e, type: 3}
   m_Name: RepeaterNode
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 132.79999, y: 90.19998}
+  nodeGraphPosition: {x: 163.79999, y: 57.608032}
   guid: a72dfe9697a6599499e077d23c4d6ce9
-  hasStarted: 0
+  hasStarted: 1
   state: 0
   child: {fileID: -3692065991916529818}

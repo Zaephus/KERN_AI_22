@@ -171,6 +171,10 @@ public class BehaviourNodeGraph : NodeGraph {
                 property.longValue = (long)_obj.GetValue();
                 break;
 
+            case bool:
+                property.boolValue = (bool)_obj.GetValue();
+                break;
+
             case string:
                 property.stringValue = (string)_obj.GetValue();
                 break;
@@ -226,6 +230,10 @@ public class BehaviourNodeGraph : NodeGraph {
 
             case "long":
                 port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(long));
+                break;
+
+            case "bool":
+                port = PropertyPort.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
                 break;
 
             case "string":
