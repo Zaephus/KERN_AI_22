@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Blackboard Field
   m_EditorClassIdentifier: 
   dataName: Has Weapon
-  dataObject:
-    serializedValue: bFalse
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,3 +28,17 @@ MonoBehaviour:
   nodes: []
   fields:
   - {fileID: -1108073610862772868}
+  - {fileID: 1851172846916574959}
+--- !u!114 &1851172846916574959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2921fa3318944e47b88173f6c86cecf, type: 3}
+  m_Name: Blackboard Field
+  m_EditorClassIdentifier: 
+  dataName: Transform

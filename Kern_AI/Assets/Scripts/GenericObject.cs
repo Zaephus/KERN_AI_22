@@ -15,6 +15,8 @@ public class GenericObject<T> {
             OnValueChanged?.Invoke(data);
         }
     }
+    
+    [SerializeField]
     private T data;
 
     public GenericObject(T _value) {

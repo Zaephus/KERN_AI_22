@@ -51,7 +51,7 @@ public class BlackboardNodeGraph : NodeGraph {
         node.nodeGraphPosition.y = newPos.yMin;
     }
 
-    private void UpdateField(SerializableObject _obj) {
+    private void UpdateField(DataObject _obj) {
         extensionContainer.Remove(field);
         field = CreateField(_obj.GetValue());
         extensionContainer.Add(field);

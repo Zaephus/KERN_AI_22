@@ -9,7 +9,7 @@ using UnityEditor.UIElements;
 public class BlackboardField : ScriptableObject {
 
     public string dataName;
-    public SerializableObject dataObject;
+    public DataObject dataObject; // wat is het type hier?
 
     public Action<string, BlackboardField> OnClick;
 
@@ -39,9 +39,9 @@ public class BlackboardField : ScriptableObject {
         OnClick?.Invoke(dataName, this);
     }
 
-    private void UpdateField(SerializableObject _obj) {
+    private void UpdateField(object _obj) {
         element.Remove(field);
-        field = CreateField(_obj.GetValue());
+        field = CreateField(_obj);
         element.Add(field);
     }
 

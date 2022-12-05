@@ -14,6 +14,7 @@ public class Enemy : Actor {
         tree.treeState = NodeState.Running;
 
         tree.blackboard.SetValue<bool>("Has Weapon", false);
+        tree.blackboard.SetValue<UnityEngine.Object>("Transform", transform);
 
         pickedUpItem += OnItemPickup;
     }

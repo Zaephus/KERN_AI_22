@@ -19,7 +19,7 @@ public class BehaviourNodeGraph : NodeGraph {
     public List<PropertyPort> propertyPorts = new List<PropertyPort>();
     public List<SerializedProperty> properties = new List<SerializedProperty>();
     public List<PropertyField> propertyFields = new List<PropertyField>();
-    public List<SerializableObject> propertyObjects = new List<SerializableObject>();
+    public List<DataObject> propertyObjects = new List<DataObject>();
     
     public BehaviourNodeGraph(BehaviourNode _node) {
 
@@ -149,7 +149,7 @@ public class BehaviourNodeGraph : NodeGraph {
 
     }
 
-    private void UpdateField(SerializableObject _obj) {
+    private void UpdateField(DataObject _obj) {
 
         int index = propertyObjects.IndexOf(_obj);
 

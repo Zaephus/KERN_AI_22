@@ -13,8 +13,9 @@ public class Blackboard : ScriptableObject {
     public List<BlackboardField> fields = new List<BlackboardField>();
 
     public T GetValue<T>(string _name) {
-        if(fields?.Find(x => x.dataName == _name)) {
-            return (T)fields[fields.IndexOf(fields.Find(x => x.dataName == _name))].dataObject.GetValue();
+        if(fields.Find(x => x.dataName == _name) != null) {
+            BlackboardField field = fields.Find(x => x.dataName == _name) as BlackboardField;
+            return (T)field.dataObject.GetValue();
         }
         else {
             return default(T);
@@ -22,15 +23,15 @@ public class Blackboard : ScriptableObject {
     }
 
     public void SetValue<T>(string _name, T _value) {
-        if(fields?.Find(x => x.dataName == _name)) {
-            fields[fields.IndexOf(fields.Find(x => x.dataName == _name))].dataObject.SetValue(_value);
+        if(fields.Find(x => x.dataName == _name) != null) {
+            BlackboardField field = fields.Find(x => x.dataName == _name) as BlackboardField;
+            field.dataObject.SetValue(_value);
         }
         else {
             BlackboardField field = ScriptableObject.CreateInstance<BlackboardField>();
             field.name = "Blackboard Field";
             field.dataName = _name;
-            field.dataObject = new SerializableObject();
-            field.dataObject.SetValue(_value);
+            field.dataObject = new DataObject(_value);
 
             fields.Add(field);
 
@@ -39,9 +40,9 @@ public class Blackboard : ScriptableObject {
         }
     }
 
-    public void RemoveValue(string _name) {
-        if(fields?.Find(x => x.dataName == _name)) {
-            BlackboardField field = fields.Find(x => x.dataName == _name);
+    public void RemoveValue<T>(string _name) {
+        if(fields.Find(x => x.dataName == _name) != null) {
+            BlackboardField field = fields.Find(x => x.dataName == _name) as BlackboardField;
             fields.Remove(field);
             AssetDatabase.RemoveObjectFromAsset(field);
             AssetDatabase.SaveAssets();
