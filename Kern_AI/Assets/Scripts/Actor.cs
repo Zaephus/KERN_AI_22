@@ -22,7 +22,7 @@ public class Actor : MonoBehaviour {
         transform.position += new Vector3(_dir.x, 0, _dir.y).normalized * moveSpeed * Time.deltaTime;
     }
 
-    protected void LookAtTarget(Vector3 _target) {
+    public void LookAtTarget(Vector3 _target) {
         transform.LookAt(_target);
     }
 
