@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class CompositeNode : BehaviourNode {
-
-    [NodeProperty(NodePropertyType.NonSerializable), SerializeReference]
+    
     public List<BehaviourNode> children = new List<BehaviourNode>();
 
     public override void AddChild(BehaviourNode _child) {

@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class FindClosestWithTagNode : ActionNode {
 
-    [NodeProperty(NodePropertyType.Null), SerializeReference]
     public string objectTag;
-    [NodeProperty(NodePropertyType.ReadOnly), SerializeReference]
-    public GameObject agent;
-    [NodeProperty(NodePropertyType.Null), SerializeReference]
-    public Transform test;
 
+    private Enemy agent;
     private List<GameObject> objectsToFind;
 
     protected override void OnStart() {
+        agent = tree.blackboard.GetValue<Enemy>("Agent");
         objectsToFind.Clear();
         objectsToFind.AddRange(GameObject.FindGameObjectsWithTag(objectTag));
     }
@@ -24,12 +21,23 @@ public class FindClosestWithTagNode : ActionNode {
             return NodeState.Failure;
         }
 
-        GameObject obj = objectsToFind[0];
-        for(int i = 1; i < objectsToFind.Count; i++) {
-            if(Vector3.Distance(agent.transform.position, objectsToFind[i].transform.position) < Vector3.Distance(agent.transform.position, obj.transform.position)) {
+        GameObject obj = null;
+        float shortestDistance = float.MaxValue;
+        for(int i = 0; i < objectsToFind.Count; i++) {
+            if(objectsToFind[i].Equals(agent.gameObject)) {
+                continue;
+            }
+            float dist = Vector3.Distance(agent.transform.position, objectsToFind[i].transform.position);
+            if(dist < shortestDistance) {
+                shortestDistance = dist;
                 obj = objectsToFind[i];
             }
         }
+
+        if(obj == null) {
+            return NodeState.Failure;
+        }
+        tree.blackboard.SetValue<GameObject>("CurrentTarget", obj);
         
         return NodeState.Succes;
 

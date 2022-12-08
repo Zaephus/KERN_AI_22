@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ConditionalNode : ActionNode {
 
-    [NodeProperty(NodePropertyType.ReadOnly), SerializeReference]
-    public bool condition;
+    public string conditionPath;
 
     protected override void OnStart() {}
 
     protected override NodeState Evaluate() {
-        if(condition) {
+        if(tree.blackboard.GetValue<bool>(conditionPath)) {
             return NodeState.Succes;
         }
         else {

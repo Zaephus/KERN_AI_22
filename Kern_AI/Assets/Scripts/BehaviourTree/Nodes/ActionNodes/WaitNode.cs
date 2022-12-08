@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WaitNode : ActionNode {
 
-    [NodeProperty(NodePropertyType.Null), SerializeReference]
     public float duration = 1f;
     private float startTime;
 

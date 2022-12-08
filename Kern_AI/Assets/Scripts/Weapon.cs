@@ -14,8 +14,8 @@ public class Weapon : MonoBehaviour {
     [SerializeField]
     private float attackTime = 0.3f;
 
-    public IEnumerator Attack(Transform _root) {
-        Hitbox hitbox = _root.GetComponent<Player>().hitbox;
+    public IEnumerator Attack(Transform _root, Hitbox _hitbox) {
+        Hitbox hitbox = _hitbox;
         hitbox.transform.position = _root.position + _root.forward * attackRange;
         hitbox.damage = damage;
         hitbox.gameObject.SetActive(true);

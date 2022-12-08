@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 1003325823}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1343,6 +1343,7 @@ MonoBehaviour:
   hitbox: {fileID: 536923103}
   weapon: {fileID: 0}
   holdTransform: {fileID: 116926052}
+  enemyMoveSpeed: 5
   tree: {fileID: 11400000, guid: c496eb8800fddde43ac124fe378b9ed2, type: 2}
 --- !u!1 &1103149120
 GameObject:
@@ -4759,7 +4760,7 @@ GameObject:
   - component: {fileID: 9092916156340798603}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5084,10 +5085,8 @@ MonoBehaviour:
   hitbox: {fileID: 394213107}
   weapon: {fileID: 0}
   holdTransform: {fileID: 8646422557610944939}
-  playerMoveSpeed: 10
+  playerMoveSpeed: 5
   cam: {fileID: 1948239839}
-  test:
-    data: {fileID: 0}
 --- !u!54 &9092916156340798604
 Rigidbody:
   m_ObjectHideFlags: 0

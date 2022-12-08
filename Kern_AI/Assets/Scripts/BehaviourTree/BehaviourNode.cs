@@ -9,21 +9,6 @@ public enum NodeState {
     Failure = 2
 }
 
-public enum NodePropertyType {
-    Null = 0,
-    ReadOnly = 1,
-    NonSerializable = 2
-}
-
-public class NodeProperty : Attribute {
-
-    public NodePropertyType propertyType = new NodePropertyType();
-    public NodeProperty(NodePropertyType _propertyType) {
-        propertyType = _propertyType;
-    }
-
-}
-
 [System.Serializable]
 public abstract class BehaviourNode : ScriptableObject {
 

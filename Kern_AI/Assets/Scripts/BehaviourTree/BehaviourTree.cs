@@ -11,6 +11,8 @@ public class BehaviourTree : ScriptableObject {
     public List<BehaviourNode> nodes = new List<BehaviourNode>();
     public NodeState treeState = NodeState.Running;
 
+    public Blackboard blackboard = new Blackboard();
+
     public NodeState Update() {
 
         if(rootNode == null) {
