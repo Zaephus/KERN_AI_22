@@ -11,24 +11,7 @@ public class BehaviourTree : ScriptableObject {
     public List<BehaviourNode> nodes = new List<BehaviourNode>();
     public NodeState treeState = NodeState.Running;
 
-    public Blackboard blackboard;
-
-    public void Initialize() {
-
-        if(blackboard == null) {
-            Debug.LogWarning("No blackboard is assigned");
-        }
-
-    }
-
     public NodeState Update() {
-
-        Debug.Log(blackboard.fields.Count);
-
-        foreach(BlackboardField field in blackboard.fields) {
-            //Debug.Log(field);
-            field.Update();
-        }
 
         if(rootNode == null) {
             Debug.LogWarning($"{name} needs a root node in order to properly run. Please add one.", this);

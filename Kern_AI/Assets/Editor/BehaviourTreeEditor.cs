@@ -24,7 +24,6 @@ public class BehaviourTreeEditor : EditorWindow {
         rootVisualElement.styleSheets.Add(styleSheet);
         
         treeGraph = rootVisualElement.Q<BehaviourTreeGraph>();
-        treeGraph.blackboardElement = rootVisualElement.Q<BlackboardElement>();
         
         if(tree != null) {
             PopulateWindow(tree);
@@ -40,7 +39,6 @@ public class BehaviourTreeEditor : EditorWindow {
         rootVisualElement.Bind(so);
         if(treeGraph != null) {
             treeGraph.PopulateGraph(tree);
-            //treeGraph.blackboardElement.PopulateElement(tree.blackboard, treeGraph);
         }
 
     }

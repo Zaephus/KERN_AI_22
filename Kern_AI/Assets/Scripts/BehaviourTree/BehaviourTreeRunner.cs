@@ -19,10 +19,6 @@ public class BehaviourTreeRunner : MonoBehaviour {
         tree.Update();
     }
 
-    private void OnValidate() {
-        tree.blackboard.SetValue<int>("Test Int", testint);
-    }
-
     #if UNITY_EDITOR
     private void OnApplicationQuit() {
         foreach(BehaviourNode node in tree.nodes) {

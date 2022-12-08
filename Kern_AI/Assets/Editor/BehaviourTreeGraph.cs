@@ -11,8 +11,6 @@ public class BehaviourTreeGraph : GraphView {
 
     public new class UxmlFactory : UxmlFactory<BehaviourTreeGraph, GraphView.UxmlTraits> {}
 
-    public BlackboardElement blackboardElement;
-
     public BehaviourTree tree;
     private bool hasTree;
 
@@ -34,9 +32,6 @@ public class BehaviourTreeGraph : GraphView {
     public void PopulateGraph(BehaviourTree _tree) {
 
         tree = _tree;
-        tree.Initialize();
-
-        blackboardElement.PopulateElement(tree.blackboard, this);
 
         graphViewChanged -= OnGraphViewChanged;
         DeleteElements(graphElements);
@@ -47,10 +42,6 @@ public class BehaviourTreeGraph : GraphView {
 
         foreach(BehaviourNode node in tree.nodes) {
             CreateNodeGraph(node);
-        }
-
-        foreach(BlackboardNode node in tree.blackboard.nodes) {
-            blackboardElement.CreateNodeGraph(node);
         }
 
         if(tree.nodes.Count > 0) {
@@ -73,17 +64,6 @@ public class BehaviourTreeGraph : GraphView {
 
             }
 
-            foreach(BlackboardNode node in tree.blackboard.nodes) {
-
-                BlackboardNodeGraph parentGraph = GetNodeByGuid(node.guid) as BlackboardNodeGraph;
-
-                if(parentGraph != null && parentGraph.node.connectedNode != null) {
-                    BehaviourNodeGraph childGraph = GetNodeByGuid(parentGraph.node.connectedNode.guid) as BehaviourNodeGraph;
-                    Edge edge = parentGraph.output.ConnectTo(childGraph.propertyPorts[parentGraph.node.connectedPortIndex]);
-                    AddElement(edge);
-                }
-            }
-
         }
         
     }
@@ -102,7 +82,7 @@ public class BehaviourTreeGraph : GraphView {
 
         BehaviourNode node = ScriptableObject.CreateInstance(_type) as BehaviourNode;
         node.tree = tree;
-        node.name = _type.Name;
+        node.name = _type.Name + " (" + tree.nodes.Count + ")";
         node.guid = GUID.Generate().ToString();
         node.nodeGraphPosition = _nodePos;
 
@@ -121,11 +101,11 @@ public class BehaviourTreeGraph : GraphView {
 
     }
 
-    private void DeleteNodeGraph(NodeGraph _node) {
+    private void DeleteNodeGraph(BehaviourNodeGraph _nodeGraph) {
 
-        if(_node.behaviourNodeGraph != null) {
+        if(_nodeGraph != null) {
 
-            BehaviourNode node = _node.behaviourNodeGraph.node;
+            BehaviourNode node = _nodeGraph.node;
 
                 if(!hasTree) {
                 return;
@@ -141,13 +121,6 @@ public class BehaviourTreeGraph : GraphView {
 
             AssetDatabase.RemoveObjectFromAsset(node);
             AssetDatabase.SaveAssets();
-        }
-        else if(_node.blackboardNodeGraph != null) {  
-
-            BlackboardNode node = _node.blackboardNodeGraph.node;
-            tree.blackboard.nodes.Remove(node);
-            AssetDatabase.RemoveObjectFromAsset(node);
-            AssetDatabase.SaveAssets();
 
         }
 
@@ -158,21 +131,17 @@ public class BehaviourTreeGraph : GraphView {
         if(_graphViewChange.elementsToRemove != null) {
             foreach(GraphElement element in _graphViewChange.elementsToRemove) {
                 
-                NodeGraph nodeGraph = element as NodeGraph;
+                BehaviourNodeGraph nodeGraph = element as BehaviourNodeGraph;
                 if(nodeGraph != null) {
                     DeleteNodeGraph(nodeGraph);
                 }
 
                 Edge edge = element as Edge;
                 if(edge != null) {
-                    NodeGraph parentGraph = edge.output.node as NodeGraph;
-                    NodeGraph childGraph = edge.input.node as NodeGraph;
-                    if(parentGraph.behaviourNodeGraph != null && childGraph.behaviourNodeGraph != null) {
-                        tree.RemoveChild(parentGraph.behaviourNodeGraph.node, childGraph.behaviourNodeGraph.node);
-                    }
-                    if(parentGraph.blackboardNodeGraph != null && childGraph.behaviourNodeGraph != null) {
-                        parentGraph.blackboardNodeGraph.node.connectedNode = null;
-                        parentGraph.blackboardNodeGraph.node.connectedPortIndex = -1;
+                    BehaviourNodeGraph parentGraph = edge.output.node as BehaviourNodeGraph;
+                    BehaviourNodeGraph childGraph = edge.input.node as BehaviourNodeGraph;
+                    if(parentGraph != null && childGraph != null) {
+                        tree.RemoveChild(parentGraph.node, childGraph.node);
                     }
                 }
             }
@@ -180,14 +149,10 @@ public class BehaviourTreeGraph : GraphView {
 
         if(_graphViewChange.edgesToCreate != null && hasTree) {
             foreach(Edge edge in _graphViewChange.edgesToCreate) {
-                NodeGraph parentGraph = edge.output.node as NodeGraph;
-                NodeGraph childGraph = edge.input.node as NodeGraph;
-                if(parentGraph.behaviourNodeGraph != null && childGraph.behaviourNodeGraph != null) {
-                    tree.AddChild(parentGraph.behaviourNodeGraph.node, childGraph.behaviourNodeGraph.node);
-                }
-                if(parentGraph.blackboardNodeGraph != null && childGraph.behaviourNodeGraph != null) {
-                    parentGraph.blackboardNodeGraph.node.connectedNode = childGraph.behaviourNodeGraph.node;
-                    parentGraph.blackboardNodeGraph.node.connectedPortIndex = childGraph.behaviourNodeGraph.propertyPorts.IndexOf((PropertyPort)edge.input);
+                BehaviourNodeGraph parentGraph = edge.output.node as BehaviourNodeGraph;
+                BehaviourNodeGraph childGraph = edge.input.node as BehaviourNodeGraph;
+                if(parentGraph != null && childGraph != null) {
+                    tree.AddChild(parentGraph.node, childGraph.node);
                 }
             }
         }
