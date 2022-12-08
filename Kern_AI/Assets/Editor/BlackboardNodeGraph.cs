@@ -14,6 +14,8 @@ public class BlackboardNodeGraph : NodeGraph {
 
     public PropertyPort output;
 
+    public DataObject dataObject;
+
     private VisualElement element;
 
     public BlackboardNodeGraph(BlackboardNode _node) {
@@ -25,16 +27,16 @@ public class BlackboardNodeGraph : NodeGraph {
             return;
         }
 
-        base.title = _node.name.Replace("Blackboard ", "");;
+        base.title = _node.name.Replace("Blackboard ", "");
         viewDataKey = node.guid;
 
         style.left = node.nodeGraphPosition.x;
         style.top = node.nodeGraphPosition.y;
 
         node.field.dataObject.OnValueChanged += UpdateField;
-        Debug.Log(node.field);
+        dataObject = new DataObject(node.field.dataObject.Data);
 
-        element = _node.field.dataObject.CreateField("");
+        element = dataObject.CreateField("");
         extensionContainer.Add(element);
 
         output = _node.field.dataObject.CreatePropertyPort(Direction.Output);
@@ -53,8 +55,9 @@ public class BlackboardNodeGraph : NodeGraph {
     }
 
     private void UpdateField(DataObject _obj) {
+        dataObject.Data = _obj.Data;
         extensionContainer.Remove(element);
-        element = _obj.CreateField("");
+        element = dataObject.CreateField("");
         extensionContainer.Add(element);
     }
     

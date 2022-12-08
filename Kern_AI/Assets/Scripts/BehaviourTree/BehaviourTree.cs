@@ -23,6 +23,13 @@ public class BehaviourTree : ScriptableObject {
 
     public NodeState Update() {
 
+        Debug.Log(blackboard.fields.Count);
+
+        foreach(BlackboardField field in blackboard.fields) {
+            //Debug.Log(field);
+            field.Update();
+        }
+
         if(rootNode == null) {
             Debug.LogWarning($"{name} needs a root node in order to properly run. Please add one.", this);
         }

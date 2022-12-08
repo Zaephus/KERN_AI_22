@@ -1343,7 +1343,7 @@ MonoBehaviour:
   hitbox: {fileID: 536923103}
   weapon: {fileID: 0}
   holdTransform: {fileID: 116926052}
-  tree: {fileID: 11400000, guid: 92019525745501949918d41ecf4de484, type: 2}
+  tree: {fileID: 11400000, guid: c496eb8800fddde43ac124fe378b9ed2, type: 2}
 --- !u!1 &1103149120
 GameObject:
   m_ObjectHideFlags: 0

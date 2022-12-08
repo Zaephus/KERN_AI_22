@@ -1,0 +1,425 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8669698450635409745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -49.19998, y: 112.000015}
+  guid: b3625f8f9042e324fbe56c2fc68a0f39
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-7355022720688519806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 150.39996, y: 0}
+  guid: 7f77b89999936e143b1a88b3f396ad5f
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-7194512329316491954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 547.2, y: 112}
+  guid: 6b6bc1b00b900f84da180ab234e698b0
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  duration: 9.090045
+--- !u!114 &-5771581470240357582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Has Weapon
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 108.79999, y: 76}
+  guid: bc0f5381a25c2484ca8eca8a46b52d0a
+  field: {fileID: 4990821524655206715, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-4717877028312310615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Actor Transform
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 36.799988, y: -2.399994}
+  guid: d641131e2ded3814eab6465c5e6027c1
+  field: {fileID: 9118999289405338587, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-2671620423606662474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d32ada830776e41bd0e1efe56e6204, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 1115.24, y: 193.19998}
+  guid: 2cb88f546e215144084eabcd45ce369c
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  message: 
+--- !u!114 &-2448834923710730151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 492.8, y: -12.800003}
+  guid: b21bc9d19d1117d4793bb07b1ab1e8b8
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: -7194512329316491954}
+  connectedPortIndex: 0
+--- !u!114 &-965973831100459156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Current Target
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -219.20001, y: -167.19998}
+  guid: 79bc6b304d0e62d40bf48d2354f0b0d1
+  field: {fileID: -8045825921655467883, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-875871740767089969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 227.70003, y: 274.40002}
+  guid: 62b6ba7b54b1eac4bbacb5f9f490b96d
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 2095113388099413755}
+  connectedPortIndex: 0
+--- !u!114 &-639003336972983661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Actor Transform
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -254.4, y: -21.600006}
+  guid: c1036dc36bb8b3241937dd3498cb74b9
+  field: {fileID: 9118999289405338587, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-541274493979036899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed5ff5013b68e547b9c9045aaa76f4e, type: 3}
+  m_Name: RepeaterNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 363, y: 114.8}
+  guid: d07c4d47f987f224ea1604d13e24f650
+  hasStarted: 1
+  tree: {fileID: 11400000}
+  state: 0
+  child: {fileID: 2095113388099413755}
+--- !u!114 &-504961338791083901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 10.399994, y: -118.40001}
+  guid: c474a7b564446394c92c7e9b3fe9abc9
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &-84393456181566689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23db0609758ec347bd68fb996798c22, type: 3}
+  m_Name: FindClosestWithTagNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 737, y: 242}
+  guid: 48b65e3bb100fc84d9455d17dccc5233
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  objectTag: 
+  agent: {fileID: 0}
+  test: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc22c292c809404991e4d2bc1b07342, type: 3}
+  m_Name: BehaviourTree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -541274493979036899}
+  nodes:
+  - {fileID: -541274493979036899}
+  - {fileID: 2095113388099413755}
+  - {fileID: -84393456181566689}
+  - {fileID: -2671620423606662474}
+  - {fileID: -7194512329316491954}
+  - {fileID: 1806076378123202600}
+  treeState: 0
+  blackboard: {fileID: 11400000, guid: 2156514f127b56a4db128f838277937a, type: 2}
+--- !u!114 &1806076378123202600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23db0609758ec347bd68fb996798c22, type: 3}
+  m_Name: FindClosestWithTagNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 468.79993, y: -148.01602}
+  guid: d317ab6a3a702b149abaa476eea71d83
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  objectTag: 
+  agent: {fileID: 0}
+  test: {fileID: 0}
+--- !u!114 &2055845806180967628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -219.19998, y: 95.2}
+  guid: 4a4780eaeb00f004db3f97af4f87e4ac
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &2095113388099413755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 410.55002, y: 274.45004}
+  guid: 709663209c8f82446be9ccb76c68b217
+  hasStarted: 1
+  tree: {fileID: 11400000}
+  state: 0
+  duration: 8.220025
+--- !u!114 &3199653397404481832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Actor Transform
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 219.4, y: -176.824}
+  guid: cd6b87bba63bcdd45b356c8def75b1e7
+  field: {fileID: 9118999289405338587, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 1806076378123202600}
+  connectedPortIndex: 2
+--- !u!114 &3257609470707448657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Has Weapon
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 10.580014, y: 191.20001}
+  guid: a7e5083d5e171734a884143dee9d4710
+  field: {fileID: 4990821524655206715, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &4573161313741009498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Current Target
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -142, y: -21.599976}
+  guid: b26f09ca88f84b74198f61dd58c28152
+  field: {fileID: -8045825921655467883, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &5669523846455380531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -101.79999, y: 189.60002}
+  guid: 3449b2c77b2775d418601d73f504bbe2
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &5738349870806883879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Test
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: -140.4, y: 96.8}
+  guid: 6f068aaa8fd399e42a190baae634929b
+  field: {fileID: -1595226301420830070, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &7555187511407954325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Current Target
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 228.00006, y: -20.00001}
+  guid: 64fd1ac99b0ac51428b7c5061ba4db93
+  field: {fileID: -8045825921655467883, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0
+--- !u!114 &9107624042979554463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa5d6b0a3bab484493d02c7a85a77f8, type: 3}
+  m_Name: Blackboard Current Target
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 0, y: 0}
+  guid: 963120f0856994e45ab514fc5ff8468d
+  field: {fileID: -8045825921655467883, guid: 2156514f127b56a4db128f838277937a, type: 2}
+  connectedNode: {fileID: 0}
+  connectedPortIndex: 0

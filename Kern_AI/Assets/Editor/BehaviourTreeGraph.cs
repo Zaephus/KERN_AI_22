@@ -77,7 +77,7 @@ public class BehaviourTreeGraph : GraphView {
 
                 BlackboardNodeGraph parentGraph = GetNodeByGuid(node.guid) as BlackboardNodeGraph;
 
-                if(parentGraph.node.connectedNode != null) {
+                if(parentGraph != null && parentGraph.node.connectedNode != null) {
                     BehaviourNodeGraph childGraph = GetNodeByGuid(parentGraph.node.connectedNode.guid) as BehaviourNodeGraph;
                     Edge edge = parentGraph.output.ConnectTo(childGraph.propertyPorts[parentGraph.node.connectedPortIndex]);
                     AddElement(edge);

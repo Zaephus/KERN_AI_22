@@ -24,6 +24,7 @@ public class NodeProperty : Attribute {
 
 }
 
+[System.Serializable]
 public abstract class BehaviourNode : ScriptableObject {
 
     public Vector2 nodeGraphPosition;

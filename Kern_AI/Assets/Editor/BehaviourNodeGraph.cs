@@ -18,7 +18,7 @@ public class BehaviourNodeGraph : NodeGraph {
 
     public List<PropertyPort> propertyPorts = new List<PropertyPort>();
     private List<DataObject> behaviourDataObjects = new List<DataObject>();
-    private List<DataObject> blackboardDataObjects = new List<DataObject>();
+    //private List<DataObject> blackboardDataObjects = new List<DataObject>();
     private List<VisualElement> containers = new List<VisualElement>();
     private List<VisualElement> fields = new List<VisualElement>();
 
@@ -49,7 +49,7 @@ public class BehaviourNodeGraph : NodeGraph {
             DataObject obj = kvp.Key;
             behaviourDataObjects.Add(obj);
 
-            blackboardDataObjects.Add(null);
+            //blackboardDataObjects.Add(null);
 
             VisualElement field = obj.CreateBindableField(obj.name, obj.name, nodeObj);
             //VisualElement field = obj.CreateField(obj.name);
@@ -137,12 +137,10 @@ public class BehaviourNodeGraph : NodeGraph {
         int index = propertyPorts.IndexOf(_port);
 
         BlackboardNodeGraph dataGraph = _edge.output.node as BlackboardNodeGraph;
-        blackboardDataObjects[index] = dataGraph.node.field.dataObject;
-        dataGraph.node.field.dataObject.OnValueChanged += UpdateField;
+        dataGraph.node.field.Bind(node, behaviourDataObjects[index].name);
+        dataGraph.node.field.Update();
 
         fields[index].SetEnabled(false);
-        
-        UpdateField(dataGraph.node.field.dataObject);
 
     }
 
@@ -150,8 +148,8 @@ public class BehaviourNodeGraph : NodeGraph {
 
         int index = propertyPorts.IndexOf(_port);
 
-        blackboardDataObjects[index].OnValueChanged -= UpdateField;
-        blackboardDataObjects[index] = null;
+        BlackboardNodeGraph dataGraph = _edge.output.node as BlackboardNodeGraph;
+        dataGraph.node.field.Unbind(node, behaviourDataObjects[index].name);
 
         if(fields[index].name != "ReadOnly") {
             fields[index].SetEnabled(true);
@@ -159,19 +157,18 @@ public class BehaviourNodeGraph : NodeGraph {
 
     }
 
-    private void UpdateField(DataObject _obj) {
+    // private void UpdateField(DataObject _obj) {
 
-        int index = blackboardDataObjects.IndexOf(_obj);
+    //     int index = blackboardDataObjects.IndexOf(_obj);
 
-        behaviourDataObjects[index].Data = blackboardDataObjects[index].Data;
+    //     behaviourDataObjects[index].Data = blackboardDataObjects[index].Data;
 
-        containers[index].Remove(fields[index]);
-        fields[index] = behaviourDataObjects[index].CreateBindableField(behaviourDataObjects[index].name, behaviourDataObjects[index].name, nodeObj);
-        //fields[index] = behaviourDataObjects[index].CreateField(behaviourDataObjects[index].name);
-        containers[index].Add(fields[index]);
+    //     containers[index].Remove(fields[index]);
+    //     fields[index] = behaviourDataObjects[index].CreateBindableField(behaviourDataObjects[index].name, behaviourDataObjects[index].name, nodeObj);
+    //     containers[index].Add(fields[index]);
 
 
-    }
+    // }
 
     private void CreateInputPorts() {
         input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Multi, typeof(BehaviourNode));

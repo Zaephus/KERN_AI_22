@@ -22,9 +22,12 @@ public class DataObject : ISerializationCallbackReceiver {
         }
     }
 
+    [SerializeField]
+    public string types;
+
     private object data;
 
-    private enum ObjectType {
+    public enum ObjectType {
         Null,
         Int,
         Float,
@@ -41,7 +44,7 @@ public class DataObject : ISerializationCallbackReceiver {
         Object
     }
 
-    private ObjectType type = ObjectType.Null;
+    public ObjectType type = ObjectType.Null;
 
     private GenericObject<int> intObject = null;
     private GenericObject<float> floatObject = null;
@@ -63,6 +66,8 @@ public class DataObject : ISerializationCallbackReceiver {
     }
 
     public void OnBeforeSerialize() {
+
+        types = data.GetType().AssemblyQualifiedName;
 
         if(data == null) {
             type = ObjectType.Null;
@@ -149,6 +154,8 @@ public class DataObject : ISerializationCallbackReceiver {
         if(type == ObjectType.Null) {
             return;
         }
+        // data = Convert.ChangeType(data ,System.Type.GetType(types));
+        // return;
 
         switch(type) {
 
@@ -157,6 +164,7 @@ public class DataObject : ISerializationCallbackReceiver {
                 break;
 
             case ObjectType.Float:
+                Debug.Log(floatObject);
                 data = floatObject.Data;
                 break;
 
@@ -210,6 +218,81 @@ public class DataObject : ISerializationCallbackReceiver {
 
         }
         
+    }
+
+    public void SetPropertyValue(SerializedProperty _prop, SerializedObject _obj) {
+
+        switch(data) {
+
+            case int:
+                _prop.intValue = (int)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case float:
+                _prop.floatValue = (float)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case long:
+                _prop.longValue = (long)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case double:
+                _prop.doubleValue = (double)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case bool:
+                _prop.boolValue = (bool)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case string:
+                _prop.stringValue = (string)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case Vector2:
+                _prop.vector2Value = (Vector2)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case Vector2Int:
+                _prop.vector2IntValue = (Vector2Int)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case Vector3:
+                _prop.vector3Value = (Vector3)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case Vector3Int:
+                _prop.vector3IntValue = (Vector3Int)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case Transform:
+                _prop.objectReferenceValue = (Transform)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case GameObject:
+                _prop.objectReferenceValue = (GameObject)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            case UnityEngine.Object:    
+                _prop.objectReferenceValue = (UnityEngine.Object)data;
+                _obj.ApplyModifiedProperties();
+                break;
+
+            default:
+                return;
+
+        }
     }
 
     public VisualElement CreateField(string _name) {

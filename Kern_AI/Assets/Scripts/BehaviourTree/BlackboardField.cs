@@ -13,6 +13,11 @@ public class BlackboardField : ScriptableObject {
 
     public Action<string, BlackboardField> OnClick;
 
+    [SerializeField]
+    public List<BehaviourNode> nodes = new List<BehaviourNode>();
+    [SerializeField]
+    public List<string> paths = new List<string>();
+
     private VisualElement element;
 
     private GroupBox box;
@@ -33,6 +38,30 @@ public class BlackboardField : ScriptableObject {
 
         return box;
 
+    }
+
+    public void Update() {
+        Debug.Log(nodes.Count);
+        for(int i = 0; i < nodes.Count; i++) {
+            SerializedObject obj = new SerializedObject(nodes[i]);
+            SerializedProperty property = obj.FindProperty(paths[i]);
+            dataObject.SetPropertyValue(property, obj);
+        }
+    }
+
+    public void Bind(BehaviourNode _obj, string _path) {
+        if(!nodes.Contains(_obj)) {
+            nodes.Add(_obj);
+            paths.Add(_path);
+            //EditorUtility.SetDirty(this);
+        }
+    }
+
+    public void Unbind(BehaviourNode _obj, string _path) {
+        if(nodes.Contains(_obj)) {
+            nodes.Remove(_obj);
+            paths.Remove(_path);
+        }
     }
 
     private void OnMouseDown(MouseDownEvent _evt) {
