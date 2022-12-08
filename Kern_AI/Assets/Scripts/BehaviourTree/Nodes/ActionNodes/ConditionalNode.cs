@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConditionalNode : ActionNode {
 
-    [NodeProperty(NodePropertyType.ReadOnly)]
+    [NodeProperty(NodePropertyType.ReadOnly), SerializeReference]
     public bool condition;
 
     protected override void OnStart() {}

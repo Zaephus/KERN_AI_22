@@ -7,19 +7,27 @@ public class Enemy : Actor {
     [SerializeField]
     private BehaviourTree tree;
 
+    float temp = 0.1f;
+
     private void Start() {
         foreach(BehaviourNode node in tree.nodes) {
             node.hasStarted = false;
         }
         tree.treeState = NodeState.Running;
 
-        tree.blackboard.SetValue<bool>("Has Weapon", false);
-        tree.blackboard.SetValue<UnityEngine.Object>("Transform", transform);
+        tree.blackboard.fields.Clear();
+
+        tree.blackboard.SetValue<bool>("Has Weapon", true);
+        tree.blackboard.SetValue<float>("Test", 0.7f);
+        tree.blackboard.SetValue<GameObject>("Current Target", gameObject);
+        tree.blackboard.SetValue<Transform>("Actor Transform", transform);
 
         pickedUpItem += OnItemPickup;
     }
 
     private void Update() {
+        temp += 0.01f;
+        tree.blackboard.SetValue<float>("Test", temp);
         tree.Update();
     }
 

@@ -101,6 +101,7 @@ public class BehaviourTreeGraph : GraphView {
         }
 
         BehaviourNode node = ScriptableObject.CreateInstance(_type) as BehaviourNode;
+        node.tree = tree;
         node.name = _type.Name;
         node.guid = GUID.Generate().ToString();
         node.nodeGraphPosition = _nodePos;

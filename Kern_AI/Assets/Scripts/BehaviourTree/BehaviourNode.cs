@@ -32,6 +32,8 @@ public abstract class BehaviourNode : ScriptableObject {
 
     public bool hasStarted;
 
+    public BehaviourTree tree;
+
     [SerializeField]
     private NodeState state = NodeState.Running;
 

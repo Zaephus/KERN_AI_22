@@ -15,7 +15,7 @@ public class Blackboard : ScriptableObject {
     public T GetValue<T>(string _name) {
         if(fields.Find(x => x.dataName == _name) != null) {
             BlackboardField field = fields.Find(x => x.dataName == _name) as BlackboardField;
-            return (T)field.dataObject.GetValue();
+            return (T)field.dataObject.Data;
         }
         else {
             return default(T);
@@ -25,7 +25,7 @@ public class Blackboard : ScriptableObject {
     public void SetValue<T>(string _name, T _value) {
         if(fields.Find(x => x.dataName == _name) != null) {
             BlackboardField field = fields.Find(x => x.dataName == _name) as BlackboardField;
-            field.dataObject.SetValue(_value);
+            field.dataObject.Data = _value;
         }
         else {
             BlackboardField field = ScriptableObject.CreateInstance<BlackboardField>();

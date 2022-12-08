@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DebugLogNode : ActionNode {
 
-    [NodeProperty(NodePropertyType.Null)]
+    [NodeProperty(NodePropertyType.Null), SerializeReference]
     public string message;
 
     protected override void OnStart() {

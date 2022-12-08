@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Could this be an interface?
 public abstract class CompositeNode : BehaviourNode {
 
-    [NodeProperty(NodePropertyType.NonSerializable)]
+    [NodeProperty(NodePropertyType.NonSerializable), SerializeReference]
     public List<BehaviourNode> children = new List<BehaviourNode>();
 
     public override void AddChild(BehaviourNode _child) {

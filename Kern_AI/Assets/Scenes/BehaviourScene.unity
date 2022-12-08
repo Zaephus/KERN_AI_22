@@ -3931,6 +3931,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer
       objectReference: {fileID: 0}
+    - target: {fileID: 3285581199971836439, guid: 51fc346b1d8ba9a43bbd3112371a881b, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51fc346b1d8ba9a43bbd3112371a881b, type: 3}
 --- !u!1001 &4724408004460224924
@@ -3943,6 +3947,10 @@ PrefabInstance:
     - target: {fileID: 2003132048151748255, guid: 2472a08bf611d024d97314b9831de71f, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003132048151748255, guid: 2472a08bf611d024d97314b9831de71f, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 3285327708432624780, guid: 2472a08bf611d024d97314b9831de71f, type: 3}
       propertyPath: m_RootOrder
@@ -4905,6 +4913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe
       objectReference: {fileID: 0}
+    - target: {fileID: 2278399244425334617, guid: d8cc80e7e96da4444b01b28902aa6012, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8cc80e7e96da4444b01b28902aa6012, type: 3}
 --- !u!1 &8693777364348643895
@@ -5074,6 +5086,8 @@ MonoBehaviour:
   holdTransform: {fileID: 8646422557610944939}
   playerMoveSpeed: 10
   cam: {fileID: 1948239839}
+  test:
+    data: {fileID: 0}
 --- !u!54 &9092916156340798604
 Rigidbody:
   m_ObjectHideFlags: 0
