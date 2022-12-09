@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : Actor {
 
     [SerializeField]
+    private Vector3 cameraOffset;
+
+    [SerializeField]
     private float playerMoveSpeed = 10f;
 
     [SerializeField]
@@ -22,14 +25,21 @@ public class Player : Actor {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        Move(new Vector2(horizontal, vertical));
+        Move(new Vector2(vertical, -horizontal));
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = new Vector3();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit)) {
+            mousePos = hit.point;
+        }
         mousePos.y = transform.position.y;
 
         LookAtTarget(mousePos);
 
-        cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, transform.position.z);
+        cam.transform.position = new Vector3(transform.position.x + cameraOffset.x,
+                                             transform.position.y + cameraOffset.y,
+                                             transform.position.z + cameraOffset.z);
 
         if(Input.GetButtonDown("Interact")) {
             PickupItem();

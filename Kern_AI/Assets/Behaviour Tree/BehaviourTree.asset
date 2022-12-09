@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd424a7f5bf77543bab0f882b8a64f4, type: 3}
   m_Name: MoveToTargetNode (6)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 203.60007, y: 665.23505}
+  nodeGraphPosition: {x: 212.13623, y: 1085.2551}
   guid: c85610e4ff337fa448c39e8193a61346
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed5ff5013b68e547b9c9045aaa76f4e, type: 3}
   m_Name: RepeaterNode (0)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 331.40002, y: 62.359985}
+  nodeGraphPosition: {x: 319.99997, y: -6.761467}
   guid: 3fda6db56e15b4b4da07fef025139c0c
   hasStarted: 1
   tree: {fileID: 11400000}
@@ -48,12 +48,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
   m_Name: WaitNode (15)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 385.2001, y: 665.23505}
+  nodeGraphPosition: {x: 393.7362, y: 1085.2551}
   guid: dce48eb0993d0c84ebaed05808e96714
   hasStarted: 0
   tree: {fileID: 11400000}
   state: 1
   duration: 0.5
+--- !u!114 &-7951861670133517340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a717260e2ed949345826c5aebc342fdd, type: 3}
+  m_Name: DashNode (30)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 2081.6, y: 1219.2001}
+  guid: 82edaa4e63c1df34eb9b90ede7dab0c3
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  dir: Left
+--- !u!114 &-7771181791886725069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc5b6c862affc74f85091a469006233, type: 3}
+  m_Name: InvertorNode (23)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 630.4, y: 181.01987}
+  guid: bd4e65793cfa21f4a878af5f088e6baa
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 2
+  child: {fileID: 4755750561173639848}
+--- !u!114 &-6608976224936273701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146dbb859a5014a47b7009b538e785c5, type: 3}
+  m_Name: AttackTargetNode (28)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 2216.0005, y: 1219.2001}
+  guid: 818aaee81a520854e8c1fa9c0a9765e5
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+--- !u!114 &-6535064564708451627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a717260e2ed949345826c5aebc342fdd, type: 3}
+  m_Name: DashNode (29)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 1948, y: 1219.2}
+  guid: bd3d63212e36c74439676d60334e88ed
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  dir: Right
+--- !u!114 &-6368092502343747445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ccd8e58df536b41b3b8487d21b7573, type: 3}
+  m_Name: SetStateTextNode (18)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 31.336296, y: 1085.2551}
+  guid: 96b4b7a53e4fcbc48ad9522a449f1120
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  stateText: Moving to Weapon
 --- !u!114 &-6079745507619017452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,12 +155,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a5065ae297ace4b88ed82ec2172329, type: 3}
   m_Name: ConditionalNode (5)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 90.400055, y: 536.49225}
+  nodeGraphPosition: {x: 31.999962, y: 549.35016}
   guid: 34f54bea007055842bbe22b5258779d0
   hasStarted: 0
   tree: {fileID: 11400000}
-  state: 1
+  state: 2
   conditionPath: HasWeapon
+--- !u!114 &-4660820627751750659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23db0609758ec347bd68fb996798c22, type: 3}
+  m_Name: FindClosestWithTagNode (25)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 32, y: 692.6501}
+  guid: ee5b9ae6d2a100d4c93e1a45d049166a
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  objectTag: Weapon
+--- !u!114 &-4208544707150602013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23db0609758ec347bd68fb996798c22, type: 3}
+  m_Name: FindClosestWithTagNode (26)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 251.20006, y: 692.8001}
+  guid: e6e16fdd44d4a4c4b904944762d6c35c
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  objectTag: Actor
+--- !u!114 &-3747379875504678999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ccd8e58df536b41b3b8487d21b7573, type: 3}
+  m_Name: SetStateTextNode (21)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 1249.6509, y: 1084.8}
+  guid: fbd49741d06997c4a8210dcd2d288593
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  stateText: Moving to Opponent
+--- !u!114 &-2999275503450100406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88c8928718b76c040b9eba358ba80de0, type: 3}
+  m_Name: DistanceComparator (27)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 470.40002, y: 692.80005}
+  guid: c2d1ceed71aa97849bb9875c0000ec86
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  children: []
+  objectOnePath: CurrentTargetWeapon
+  objectTwoPath: CurrentTargetActor
 --- !u!114 &-2940920883201241728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,17 +247,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
   m_Name: SequencerNode (4)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 257.6, y: 536.49225}
+  nodeGraphPosition: {x: 302.5362, y: 956.45514}
   guid: 310a9e3c0d2797f4691283a11ea99470
   hasStarted: 0
   tree: {fileID: 11400000}
   state: 1
   children:
-  - {fileID: 7998205844821232430}
+  - {fileID: 7893479965795363955}
+  - {fileID: -6368092502343747445}
   - {fileID: -9083849098823634334}
   - {fileID: -8591261844042686743}
+  - {fileID: 6656900505727648758}
   - {fileID: 1377189218421718921}
   - {fileID: 6965326926287544840}
+--- !u!114 &-2698699410355701031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf6a8fa583daa6429c025ec2d95c815, type: 3}
+  m_Name: ChooseRandomNode (27)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 1916.8, y: 1084.8}
+  guid: 689b3ccba2d0a254595f349f73f1641f
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  children:
+  - {fileID: 2412132154782464180}
+  - {fileID: -6535064564708451627}
+  - {fileID: -7951861670133517340}
+  - {fileID: -6608976224936273701}
+  - {fileID: 7396968866845000154}
+--- !u!114 &-1877487484659043777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
+  m_Name: SequencerNode (24)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 257.6, y: 548.8001}
+  guid: 19ad4c8117799d341bc3b171ee6026f5
+  hasStarted: 1
+  tree: {fileID: 11400000}
+  state: 0
+  children:
+  - {fileID: -4660820627751750659}
+  - {fileID: -4208544707150602013}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &-933672518662154800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
   m_Name: WaitNode (12)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 955.99994, y: 423.0592}
+  nodeGraphPosition: {x: 2111.2, y: 1084.8}
   guid: c61296268a190504b901637f9ab692dc
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -125,11 +335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23db0609758ec347bd68fb996798c22, type: 3}
   m_Name: FindClosestWithTagNode (8)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 257.59998, y: 423.0592}
+  nodeGraphPosition: {x: 1037.6509, y: 1084.8}
   guid: 80aecbcf93ad49440a53bccd6456602e
   hasStarted: 0
   tree: {fileID: 11400000}
-  state: 2
+  state: 1
   objectTag: Actor
 --- !u!114 &-774873462403401453
 MonoBehaviour:
@@ -143,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f6bdbecc4b200479173decbde5c2e2, type: 3}
   m_Name: WinNode (14)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 651.4, y: 300}
+  nodeGraphPosition: {x: 828.8, y: 181.01987}
   guid: d79dce658a9ed854ca07b7c1d56905da
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -166,7 +376,6 @@ MonoBehaviour:
   - {fileID: 4268299092811723546}
   - {fileID: 3780742535941471918}
   - {fileID: -2940920883201241728}
-  - {fileID: 7998205844821232430}
   - {fileID: -6079745507619017452}
   - {fileID: -9083849098823634334}
   - {fileID: 1377189218421718921}
@@ -179,6 +388,22 @@ MonoBehaviour:
   - {fileID: 232942589425469368}
   - {fileID: -8591261844042686743}
   - {fileID: 6965326926287544840}
+  - {fileID: -6368092502343747445}
+  - {fileID: 6656900505727648758}
+  - {fileID: -3747379875504678999}
+  - {fileID: 6542541211142071521}
+  - {fileID: -7771181791886725069}
+  - {fileID: 4755750561173639848}
+  - {fileID: 7893479965795363955}
+  - {fileID: 1082609958888616560}
+  - {fileID: -1877487484659043777}
+  - {fileID: -4660820627751750659}
+  - {fileID: -4208544707150602013}
+  - {fileID: -2698699410355701031}
+  - {fileID: -6608976224936273701}
+  - {fileID: -6535064564708451627}
+  - {fileID: -7951861670133517340}
+  - {fileID: 7396968866845000154}
   treeState: 0
 --- !u!114 &232942589425469368
 MonoBehaviour:
@@ -192,14 +417,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed59af5768b70164c82461252722a654, type: 3}
   m_Name: SelectorNode (14)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 449.59998, y: 186.6}
+  nodeGraphPosition: {x: 456, y: 85.093346}
   guid: 97389bcfcb229704fb39cc5ddddc0a6e
   hasStarted: 1
   tree: {fileID: 11400000}
   state: 0
   children:
   - {fileID: 4268299092811723546}
+  - {fileID: -7771181791886725069}
   - {fileID: -774873462403401453}
+--- !u!114 &1082609958888616560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
+  m_Name: SequencerNode (23)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 1571.1997, y: 955.9999}
+  guid: 36ea4a56175e63c4687027ca77c2680f
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  children:
+  - {fileID: -901814236119665104}
+  - {fileID: -3747379875504678999}
+  - {fileID: 7117179727859676621}
+  - {fileID: 8787474318629062415}
+  - {fileID: 6542541211142071521}
+  - {fileID: -933672518662154800}
+  - {fileID: -2698699410355701031}
 --- !u!114 &1377189218421718921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149c39bd9190dc9468f27b3900eac097, type: 3}
   m_Name: PickUpWeaponNode (7)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 514, y: 665.23505}
+  nodeGraphPosition: {x: 700.9363, y: 1085.2551}
   guid: 82f90033249c9d74aa7d7cbd9c5d307b
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -229,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146dbb859a5014a47b7009b538e785c5, type: 3}
   m_Name: AttackTargetNode (11)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 779.99994, y: 423.0592}
+  nodeGraphPosition: {x: 1772.3503, y: 1219.55}
   guid: 06a0820413fc98b4ab2efb583f210740
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -246,14 +497,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed59af5768b70164c82461252722a654, type: 3}
   m_Name: SelectorNode (3)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 110.399994, y: 423.0592}
+  nodeGraphPosition: {x: 112.80009, y: 423.20004}
   guid: 7191bf825a4637340a474d5e32a751de
-  hasStarted: 0
+  hasStarted: 1
   tree: {fileID: 11400000}
-  state: 1
+  state: 0
   children:
   - {fileID: -6079745507619017452}
-  - {fileID: -2940920883201241728}
+  - {fileID: -1877487484659043777}
 --- !u!114 &4268299092811723546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,18 +517,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
   m_Name: SequencerNode (1)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 449.8, y: 300.19998}
+  nodeGraphPosition: {x: 449.59995, y: 181.01987}
   guid: bee07ae0d55f9f44b9c4e8960f3a7c00
-  hasStarted: 0
+  hasStarted: 1
   tree: {fileID: 11400000}
-  state: 2
+  state: 0
   children:
   - {fileID: 3780742535941471918}
-  - {fileID: -901814236119665104}
-  - {fileID: 7117179727859676621}
-  - {fileID: 8787474318629062415}
-  - {fileID: 2412132154782464180}
-  - {fileID: -933672518662154800}
+  - {fileID: 1082609958888616560}
+--- !u!114 &4755750561173639848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ccd8e58df536b41b3b8487d21b7573, type: 3}
+  m_Name: SetStateTextNode (24)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 748.5502, y: 269.59998}
+  guid: ab7ffec680bdc254a9950bd9361d0c32
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  stateText: Won
+--- !u!114 &6542541211142071521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ccd8e58df536b41b3b8487d21b7573, type: 3}
+  m_Name: SetStateTextNode (22)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 1737.6508, y: 1084.8}
+  guid: 9d9a57957c1a57549893383634844569
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  stateText: Attacking
+--- !u!114 &6656900505727648758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ccd8e58df536b41b3b8487d21b7573, type: 3}
+  m_Name: SetStateTextNode (19)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 522.53625, y: 1085.2551}
+  guid: 56a7c171839010249bfd6b5ff38c97e9
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 1
+  stateText: Grabbing Weapon
 --- !u!114 &6965326926287544840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
   m_Name: WaitNode (16)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 698, y: 665.23505}
+  nodeGraphPosition: {x: 884.9363, y: 1085.2551}
   guid: 7bd5f646809724a4fa6e52d66fdf0c2b
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -308,13 +609,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd424a7f5bf77543bab0f882b8a64f4, type: 3}
   m_Name: MoveToTargetNode (9)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 469.59995, y: 423.0592}
+  nodeGraphPosition: {x: 1427.2509, y: 1084.8}
   guid: 99d217fccf411744d9065756373ffa9c
   hasStarted: 0
   tree: {fileID: 11400000}
   state: 1
   stoppingDistance: 2
---- !u!114 &7998205844821232430
+--- !u!114 &7396968866845000154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a717260e2ed949345826c5aebc342fdd, type: 3}
+  m_Name: DashNode (31)
+  m_EditorClassIdentifier: 
+  nodeGraphPosition: {x: 2395.2, y: 1219.2001}
+  guid: 697046d83633cf8458b51d0c8779f37f
+  hasStarted: 0
+  tree: {fileID: 11400000}
+  state: 0
+  dir: Back
+--- !u!114 &7893479965795363955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,10 +643,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23db0609758ec347bd68fb996798c22, type: 3}
-  m_Name: FindClosestWithTagNode (5)
+  m_Name: FindClosestWithTagNode (22)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: -13.9999485, y: 665.23505}
-  guid: 0a8bec2a9d4991d4181e54cd074ad9ab
+  nodeGraphPosition: {x: -187.8637, y: 1085.2551}
+  guid: 9631d9f37d7973e4b8feb0f92142048e
   hasStarted: 0
   tree: {fileID: 11400000}
   state: 1
@@ -344,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c36ab31f4561842a28100ca4944b06, type: 3}
   m_Name: WaitNode (10)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 651.2, y: 423.0592}
+  nodeGraphPosition: {x: 1608.8508, y: 1084.8}
   guid: c17d23b5ec9ec8e4b8396603188918e7
   hasStarted: 0
   tree: {fileID: 11400000}

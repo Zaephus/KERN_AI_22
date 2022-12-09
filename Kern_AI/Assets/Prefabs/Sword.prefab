@@ -116,4 +116,4 @@ MonoBehaviour:
   holdRotationOffset: {x: -14, y: -29, z: 108}
   attackRange: 2
   damage: 8
-  attackTime: 0.3
+  attackTime: 0.1

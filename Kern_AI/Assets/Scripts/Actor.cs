@@ -14,13 +14,19 @@ public class Actor : MonoBehaviour {
     protected Action pickedUpItem;
 
     [SerializeField]
+    private float dashDist;
+
+    [SerializeField]
+    private float punchAttackRange;
+    [SerializeField]
+    private int punchDamage;
+    [SerializeField]
+    private float punchAttackTime;
+
+    [SerializeField]
     private Weapon weapon;
     [SerializeField]
     private Transform holdTransform;
-
-    protected void Move(Vector2 _dir) {
-        transform.position += new Vector3(_dir.x, 0, _dir.y).normalized * moveSpeed * Time.deltaTime;
-    }
 
     public void LookAtTarget(Vector3 _target) {
         transform.LookAt(_target);
@@ -48,7 +54,7 @@ public class Actor : MonoBehaviour {
             weapon.StartCoroutine(weapon.Attack(transform, hitbox));
         }
         else {
-            Debug.LogWarning("Actor has no weapon");
+            StartCoroutine(Punch());
         }
     }
 
@@ -61,8 +67,24 @@ public class Actor : MonoBehaviour {
 
     }
 
+    public void Dash(Vector2 _dir) {
+        transform.position += new Vector3(_dir.x, 0, _dir.y).normalized * dashDist;
+    }
+
+    protected void Move(Vector2 _dir) {
+        transform.position += new Vector3(_dir.x, 0, _dir.y).normalized * moveSpeed * Time.deltaTime;
+    }
+
     protected virtual void Die() {
         Destroy(gameObject);
+    }
+
+    private IEnumerator Punch() {
+        hitbox.transform.position = transform.position + transform.forward * punchAttackRange;
+        hitbox.damage = punchDamage;
+        hitbox.gameObject.SetActive(true);
+        yield return new WaitForSeconds(punchAttackTime);
+        hitbox.gameObject.SetActive(false);
     }
 
 }

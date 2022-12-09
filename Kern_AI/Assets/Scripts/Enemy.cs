@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Enemy : Actor {
 
@@ -9,6 +10,11 @@ public class Enemy : Actor {
 
     [SerializeField]
     private BehaviourTree tree;
+
+    [SerializeField]
+    private Canvas stateCanvas;
+    [SerializeField]
+    private Vector3 stateCanvasOffset;
 
     private void Start() {
 
@@ -21,12 +27,17 @@ public class Enemy : Actor {
 
         tree.blackboard.SetValue<Enemy>("Agent", this);
         tree.blackboard.SetValue<bool>("HasWeapon", false);
+        tree.blackboard.SetValue<string>("CurrentState", "Initializing");
 
         pickedUpItem += OnItemPickup;
         
     }
 
     private void Update() {
+        stateCanvas.transform.position = new Vector3(transform.position.x + stateCanvasOffset.x,
+                                                     transform.position.y + stateCanvasOffset.y,
+                                                     transform.position.z + stateCanvasOffset.z);
+        stateCanvas.GetComponentInChildren<TMP_Text>().text = tree.blackboard.GetValue<string>("CurrentState");
         tree.Update();
     }
 
@@ -37,5 +48,10 @@ public class Enemy : Actor {
 
     private void OnItemPickup() {
         tree.blackboard.SetValue<bool>("HasWeapon", true);
+    }
+
+    protected override void Die() {
+        stateCanvas.enabled = false;
+        base.Die();
     }
 }

@@ -118,4 +118,4 @@ MonoBehaviour:
   holdRotationOffset: {x: 6, y: 175, z: 240}
   attackRange: 1.8
   damage: 6
-  attackTime: 0.3
+  attackTime: 0.1

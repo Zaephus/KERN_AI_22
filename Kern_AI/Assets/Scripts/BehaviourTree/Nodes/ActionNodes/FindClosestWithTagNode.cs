@@ -37,6 +37,7 @@ public class FindClosestWithTagNode : ActionNode {
         if(obj == null) {
             return NodeState.Failure;
         }
+        tree.blackboard.SetValue<GameObject>("CurrentTarget" + objectTag, obj);
         tree.blackboard.SetValue<GameObject>("CurrentTarget", obj);
         
         return NodeState.Succes;
