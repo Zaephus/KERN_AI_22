@@ -17,15 +17,15 @@ public class DashNode : ActionNode {
 
         switch(dir) {
             case "Right":
-                agent.Dash(agent.transform.right);
+                agent.Dash(new Vector2(agent.transform.right.x, agent.transform.right.z));
                 break;
             
             case "Left":
-                agent.Dash(-agent.transform.right);
+                agent.Dash(new Vector2(-agent.transform.right.x, -agent.transform.right.z));
                 break;
 
             case "Back":
-                agent.Dash(-agent.transform.forward);
+                agent.Dash(new Vector2(-agent.transform.forward.x, -agent.transform.forward.z));
                 break;
         }
 

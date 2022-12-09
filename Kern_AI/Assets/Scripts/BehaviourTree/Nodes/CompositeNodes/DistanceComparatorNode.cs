@@ -32,11 +32,11 @@ public class DistanceComparatorNode : CompositeNode {
 
         if(distOne > distTwo) {
             tree.blackboard.SetValue<GameObject>("CurrentTarget", objectTwo);
-            return GetChildren()[1]!.Update();
+            return GetChildren()[1].Update();
         }
         else {
             tree.blackboard.SetValue<GameObject>("CurrentTarget", objectOne);
-            return GetChildren()[0]!.Update();
+            return GetChildren()[0].Update();
         }
 
     }
