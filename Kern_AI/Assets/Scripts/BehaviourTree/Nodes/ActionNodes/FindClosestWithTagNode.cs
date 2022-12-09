@@ -7,7 +7,7 @@ public class FindClosestWithTagNode : ActionNode {
     public string objectTag;
 
     private Enemy agent;
-    private List<GameObject> objectsToFind;
+    private List<GameObject> objectsToFind = new List<GameObject>();
 
     protected override void OnStart() {
         agent = tree.blackboard.GetValue<Enemy>("Agent");
@@ -37,6 +37,7 @@ public class FindClosestWithTagNode : ActionNode {
         if(obj == null) {
             return NodeState.Failure;
         }
+
         tree.blackboard.SetValue<GameObject>("CurrentTarget" + objectTag, obj);
         tree.blackboard.SetValue<GameObject>("CurrentTarget", obj);
         

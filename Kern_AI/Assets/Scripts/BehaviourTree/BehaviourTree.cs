@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.Callbacks;
 
 [CreateAssetMenu(fileName = "BehaviourTree", menuName = "Behaviour Tree/Behaviour Tree")]
 public class BehaviourTree : ScriptableObject {
@@ -27,7 +25,6 @@ public class BehaviourTree : ScriptableObject {
         else {
             treeState = NodeState.Failure;
         }
-
         return treeState;
 
     }

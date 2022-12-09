@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a5065ae297ace4b88ed82ec2172329, type: 3}
   m_Name: ConditionalNode (7)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 44.399994, y: 608.60004}
+  nodeGraphPosition: {x: 45, y: 609}
   guid: 8ed33d45aeb0ed044bdd617aa6016c59
   hasStarted: 0
   tree: {fileID: 11400000}
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e7888ce089f4342bac6198800ee130, type: 3}
   m_Name: SequencerNode (8)
   m_EditorClassIdentifier: 
-  nodeGraphPosition: {x: 220.79999, y: 608.8}
+  nodeGraphPosition: {x: 205, y: 609}
   guid: 80c7faaafa9e619448288f69dec76507
   hasStarted: 0
   tree: {fileID: 11400000}
